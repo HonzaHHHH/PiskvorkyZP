@@ -21,17 +21,23 @@ void grossHilfe(void)
 
 int loadSettings()
 {
+    if (access("usernames.sett", F_OK))
+    {
     FILE *fileUlozeni = fopen("usernames.sett", "r");
     if (fileUlozeni == NULL)
         return 11;
     fscanf(fileUlozeni, "%49s %49s %49s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
     fclose(fileUlozeni);
+    }
+    else{
+        
     if (strlen(jmenoUzivatele) < 1)
         strcat(jmenoUzivatele, "DefaultUser");
     if (strlen(jmenoProtihrace) < 1)
         strcat(jmenoProtihrace, "DefaultOponent");
     if (strlen(jmenoBota) < 1)
         strcat(jmenoBota, "DefaultBot");
+    }
     return 0;
 }
 
@@ -55,7 +61,7 @@ int saveSettings()
     FILE *fileUlozeni = fopen("usernames.sett", "w");
     if (fileUlozeni == NULL)
         return 10;
-    if (strlen(jmenoUzivatele) == 0)
+    if (strlen(jmenoUzivatele) != 0)
         fprintf(fileUlozeni, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
     fclose(fileUlozeni);
     return 0;
