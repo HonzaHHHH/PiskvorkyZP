@@ -21,7 +21,7 @@ void grossHilfe(void)
 
 int loadSettings()
 {
-    if (access("usernames.sett", F_OK))
+    if (access("usernames.sett", F_OK) == 0)
     {
     FILE *fileUlozeni = fopen("usernames.sett", "r");
     if (fileUlozeni == NULL)
@@ -61,8 +61,7 @@ int saveSettings()
     FILE *fileUlozeni = fopen("usernames.sett", "w");
     if (fileUlozeni == NULL)
         return 10;
-    if (strlen(jmenoUzivatele) != 0)
-        fprintf(fileUlozeni, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
+    fprintf(fileUlozeni, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
     fclose(fileUlozeni);
     return 0;
 }
@@ -135,6 +134,16 @@ void settingsInterface(void)
             if (strcmp(argument, "usr") == 0)
             {
                 strcpy(jmenoUzivatele, parametr);
+                printf("Jmeno %s bylo zaznamenáno\n", parametr);
+            }
+            else if (strcmp(argument, "pth") == 0)
+            {
+                strcpy(jmenoProtihrace, parametr);
+                printf("Jmeno %s bylo zaznamenáno\n", parametr);
+            }
+            else if (strcmp(argument, "bot") == 0)
+            {
+                strcpy(jmenoBota, parametr);
                 printf("Jmeno %s bylo zaznamenáno\n", parametr);
             }
             else if (strcmp(argument, "hlp") == 0)
