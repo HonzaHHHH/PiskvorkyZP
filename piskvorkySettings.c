@@ -8,6 +8,8 @@
 char jmenoUzivatele[50];
 char jmenoProtihrace[50];
 char jmenoBota[50];
+int sirkaHerniPlochy;
+int vyskaHerniPlochy;
 
 void settingsHelp(void)
 {
@@ -23,11 +25,11 @@ int loadSettings()
 {
     if (access("usernames.sett", F_OK) == 0)
     {
-    FILE *fileUlozeni = fopen("usernames.sett", "r");
-    if (fileUlozeni == NULL)
+    FILE *fileUlozeniJmen = fopen("usernames.sett", "r");
+    if (fileUlozeniJmen == NULL)
         return 11;
-    fscanf(fileUlozeni, "%49s %49s %49s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
-    fclose(fileUlozeni);
+    fscanf(fileUlozeniJmen, "%49s %49s %49s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
+    fclose(fileUlozeniJmen);
     }
     else{
         
@@ -37,6 +39,15 @@ int loadSettings()
         strcat(jmenoProtihrace, "DefaultOponent");
     if (strlen(jmenoBota) < 1)
         strcat(jmenoBota, "DefaultBot");
+    }
+    if (access("settingsNumbers.sett", F_OK) == 0)
+    {
+    FILE *fileUlozeniRozmeru = fopen("settingsNumbbers.sett", "r");
+    if (fileUlozeniRozmeru == NULL)
+        return 12;
+    fscanf(fileUlozeniRozmeru, "%i %i", sirkaHerniPlochy, vyskaHerniPlochy);
+    fclose(fileUlozeniRozmeru);
+    
     }
     return 0;
 }
@@ -55,14 +66,22 @@ char *getBotName(void)
 {
     return jmenoBota;
 }
+int getSirkaHerniPlochy(void)
+{
+    return sirkaHerniPlochy;
+}
+int getVyskaHerniPlochy(void)
+{
+    return vyskaHerniPlochy;
+}
 
 int saveSettings()
 {
-    FILE *fileUlozeni = fopen("usernames.sett", "w");
-    if (fileUlozeni == NULL)
+    FILE *fileUlozeniJmen = fopen("usernames.sett", "w");
+    if (fileUlozeniJmen == NULL)
         return 10;
-    fprintf(fileUlozeni, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
-    fclose(fileUlozeni);
+    fprintf(fileUlozeniJmen, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
+    fclose(fileUlozeniJmen);
     return 0;
 }
 
