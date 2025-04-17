@@ -14,6 +14,6 @@ void multiplayerStart(void)
     char startovníKlavesa = getchar();
     clearScreen();
     if (startovníKlavesa == 'e' || startovníKlavesa == 'E')
-        return 0;
+        return;
     
 }
