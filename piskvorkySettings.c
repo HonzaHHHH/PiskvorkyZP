@@ -54,6 +54,10 @@ int loadSettings()
     {
         return 4;
     }
+    if (sirkaHerniPlochy < 3)
+        sirkaHerniPlochy = 3;
+    if (vyskaHerniPlochy < 3)
+        vyskaHerniPlochy = 3;
     fclose(fileUlozeniRozmeru);
     
     }
@@ -199,7 +203,7 @@ void settingsInterface(void)
             {
                 printf("Použití:\nrozm argument parametr\nNastaví šířku a délku hrací plochy\nArgumenty:\nsir - šířka herního pole, jako parametr bere číslo\nvys - výška herního pole, jako parametr bere číslo\nhlp - zobrazí tuto nápovědu\n");
             }
-            if (strcmp(prikaz, "sir") == 0)
+            else if (strcmp(argument, "sir") == 0)
             {
                 sirkaHerniPlochy = atoi(parametr);
                 if (sirkaHerniPlochy < 3)
@@ -208,7 +212,7 @@ void settingsInterface(void)
                 }
                 printf("Hodnota byla zaznamenána\n");
             }
-            if (strcmp(prikaz, "vys") == 0)
+            else if (strcmp(argument, "vys") == 0)
             {
                 vyskaHerniPlochy = atoi(parametr);
                 if (vyskaHerniPlochy < 3)
