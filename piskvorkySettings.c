@@ -13,7 +13,7 @@ int vyskaHerniPlochy;
 
 void settingsHelp(void)
 {
-    printf("Příkazy:\nexit - vrátí se opět do menu\nquit - ukončí aplikaci\nhelp - zobrazí nápovědu\nhhlp - zobrazí, jak se zde mají používat příkazy\nclsc - vycisti tuto konzoli\ntisk - vypíše všechny uložené informace\nsave - uloží změny\nname - nastaví jména hráčů\n");
+    printf("Příkazy:\nexit - vrátí se opět do menu\nquit - ukončí aplikaci\nhelp - zobrazí nápovědu\nhhlp - zobrazí, jak se zde mají používat příkazy\nclsc - vycisti tuto konzoli\ntisk - vypíše všechny uložené informace\nsave - uloží změny\nname - nastaví jména hráčů\nrozm - nastaví rozměry herní plochy\n");
 }
 
 void grossHilfe(void)
@@ -49,7 +49,7 @@ int loadSettings()
     FILE *fileUlozeniRozmeru = fopen("settingsNumbers.sett", "r");
     if (fileUlozeniRozmeru == NULL)
         return 12;
-    int check = fscanf(fileUlozeniRozmeru, "%i %i", sirkaHerniPlochy, vyskaHerniPlochy);
+    int check = fscanf(fileUlozeniRozmeru, "%i %i", &sirkaHerniPlochy, &vyskaHerniPlochy);
     if (check != 2)
     {
         return 4;
@@ -188,6 +188,39 @@ void settingsInterface(void)
             }
             else if (strcmp(argument, "hlp") == 0)
                 printf("Použití:\nname argument parametr\nArgumenty:\nhlp - zobrazí tuto nápovědu\nusr - parametr přečte jako jméno uživatele\nbot - parametr přečte jako jméno bota v singleplayeru\npth - parametr přečte jako jméno protihráče\n");
+                else
+                {
+                    printf("Tetno argument nerozpoznávám\n");
+                }
+        }
+        else if (strcmp(prikaz, "rozm") == 0)
+        {
+            if (strcmp(argument, "hlp") == 0)
+            {
+                printf("Použití:\nrozm argument parametr\nNastaví šířku a délku hrací plochy\nArgumenty:\nsir - šířka herního pole, jako parametr bere číslo\nvys - výška herního pole, jako parametr bere číslo\nhlp - zobrazí tuto nápovědu\n");
+            }
+            if (strcmp(prikaz, "sir") == 0)
+            {
+                sirkaHerniPlochy = atoi(parametr);
+                if (sirkaHerniPlochy < 3)
+                {
+                    sirkaHerniPlochy = 3;
+                }
+                printf("Hodnota byla zaznamenána\n");
+            }
+            if (strcmp(prikaz, "vys") == 0)
+            {
+                vyskaHerniPlochy = atoi(parametr);
+                if (vyskaHerniPlochy < 3)
+                {
+                    vyskaHerniPlochy = 3;
+                }
+                printf("Hodnota byla zaznamenána\n");
+            }
+            else
+            {
+                printf("Tetno argument nerozpoznávám\n");
+            }
         }
         else if (strcmp(prikaz, "tisk") == 0)
         {
