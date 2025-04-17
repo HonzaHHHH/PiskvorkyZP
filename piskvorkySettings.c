@@ -88,12 +88,20 @@ int saveSettings()
     FILE *fileUlozeniJmen = fopen("usernames.sett", "w");
     if (fileUlozeniJmen == NULL)
         return 10;
-    fprintf(fileUlozeniJmen, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
+    int check = fprintf(fileUlozeniJmen, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
+    if (check != 3)
+    {
+        return 8;
+    }
     fclose(fileUlozeniJmen);
     FILE *fileUlozeniPlochy = fopen("settingsNumbers.sett", "w");
     if (fileUlozeniPlochy == NULL)
         return 11;
-    fprintf(fileUlozeniPlochy, "%i %i", sirkaHerniPlochy, vyskaHerniPlochy);
+    check = fprintf(fileUlozeniPlochy, "%i %i", sirkaHerniPlochy, vyskaHerniPlochy);
+    if (check != 2)
+    {
+        return 9;
+    }
     fclose(fileUlozeniPlochy);
     return 0;
 }
