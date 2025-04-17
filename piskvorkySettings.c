@@ -53,6 +53,8 @@ int loadSettings()
         int check = fscanf(fileUlozeniRozmeru, "%i %i", &sirkaHerniPlochy, &vyskaHerniPlochy);
         if (check != 2)
         {
+            sirkaHerniPlochy = 10;
+            vyskaHerniPlochy = 10;
             return 4;
         }
         if (sirkaHerniPlochy < 3)
@@ -60,6 +62,11 @@ int loadSettings()
         if (vyskaHerniPlochy < 3)
             vyskaHerniPlochy = 3;
         fclose(fileUlozeniRozmeru);
+    }
+    else
+    {
+        sirkaHerniPlochy = 10;
+        vyskaHerniPlochy = 10;
     }
     return 0;
 }
@@ -93,7 +100,7 @@ int saveSettings()
     if (fileUlozeniJmen == NULL)
         return 10;
     int check = fprintf(fileUlozeniJmen, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
-    if (check != 3)
+    if (check != (strlen(jmenoUzivatele) + strlen(jmenoProtihrace) + strlen(jmenoBota) + 2))
     {
         return 8;
     }
@@ -102,7 +109,7 @@ int saveSettings()
     if (fileUlozeniPlochy == NULL)
         return 11;
     check = fprintf(fileUlozeniPlochy, "%i %i", sirkaHerniPlochy, vyskaHerniPlochy);
-    if (check != 2)
+    if (check < 0)
     {
         return 9;
     }
@@ -168,10 +175,14 @@ void settingsInterface(void)
         }
         else if (strcmp(prikaz, "save") == 0)
         {
-            if (saveSettings() == 0)
+            int errcode = saveSettings();
+            if (errcode == 0)
                 printf("Změny uloženy\n");
             else
+            {
                 printf("Nějaká chyba\n");
+                fprintf(stderr, "Chyba: %i\n", errcode);
+            }
         }
         else if (strcmp(prikaz, "name") == 0)
         {
@@ -233,7 +244,7 @@ void settingsInterface(void)
                 printf("Použití:\ntisk\nBez argumentů - vypíše všechny možnosti nastavení\n");
             }
             else
-                printf("Jméno uživatele: %s\nJméno bota: %s\nJméno protihráče: %s\n", jmenoUzivatele, jmenoBota, jmenoProtihrace);
+                printf("Jméno uživatele: %s\nJméno bota: %s\nJméno protihráče: %s\nŠířka a výška herního pole: %i x %i\n", jmenoUzivatele, jmenoBota, jmenoProtihrace, sirkaHerniPlochy, vyskaHerniPlochy);
         }
         else
         {
