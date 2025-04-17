@@ -28,7 +28,11 @@ int loadSettings()
     FILE *fileUlozeniJmen = fopen("usernames.sett", "r");
     if (fileUlozeniJmen == NULL)
         return 11;
-    fscanf(fileUlozeniJmen, "%49s %49s %49s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
+    int check = fscanf(fileUlozeniJmen, "%49s %49s %49s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
+    if (check != 3)
+    {
+        return 5;
+    }
     fclose(fileUlozeniJmen);
     }
     else{
@@ -42,10 +46,14 @@ int loadSettings()
     }
     if (access("settingsNumbers.sett", F_OK) == 0)
     {
-    FILE *fileUlozeniRozmeru = fopen("settingsNumbbers.sett", "r");
+    FILE *fileUlozeniRozmeru = fopen("settingsNumbers.sett", "r");
     if (fileUlozeniRozmeru == NULL)
         return 12;
-    fscanf(fileUlozeniRozmeru, "%i %i", sirkaHerniPlochy, vyskaHerniPlochy);
+    int check = fscanf(fileUlozeniRozmeru, "%i %i", sirkaHerniPlochy, vyskaHerniPlochy);
+    if (check != 2)
+    {
+        return 4;
+    }
     fclose(fileUlozeniRozmeru);
     
     }
@@ -82,6 +90,11 @@ int saveSettings()
         return 10;
     fprintf(fileUlozeniJmen, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
     fclose(fileUlozeniJmen);
+    FILE *fileUlozeniPlochy = fopen("settingsNumbers.sett", "w");
+    if (fileUlozeniPlochy == NULL)
+        return 11;
+    fprintf(fileUlozeniPlochy, "%i %i", sirkaHerniPlochy, vyskaHerniPlochy);
+    fclose(fileUlozeniPlochy);
     return 0;
 }
 
