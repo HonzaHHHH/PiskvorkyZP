@@ -25,41 +25,41 @@ int loadSettings()
 {
     if (access("usernames.sett", F_OK) == 0)
     {
-    FILE *fileUlozeniJmen = fopen("usernames.sett", "r");
-    if (fileUlozeniJmen == NULL)
-        return 11;
-    int check = fscanf(fileUlozeniJmen, "%49s %49s %49s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
-    if (check != 3)
+        FILE *fileUlozeniJmen = fopen("usernames.sett", "r");
+        if (fileUlozeniJmen == NULL)
+            return 11;
+        int check = fscanf(fileUlozeniJmen, "%49s %49s %49s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
+        if (check != 3)
+        {
+            return 5;
+        }
+        fclose(fileUlozeniJmen);
+    }
+    else
     {
-        return 5;
-    }
-    fclose(fileUlozeniJmen);
-    }
-    else{
-        
-    if (strlen(jmenoUzivatele) < 1)
-        strcat(jmenoUzivatele, "DefaultUser");
-    if (strlen(jmenoProtihrace) < 1)
-        strcat(jmenoProtihrace, "DefaultOponent");
-    if (strlen(jmenoBota) < 1)
-        strcat(jmenoBota, "DefaultBot");
+
+        if (strlen(jmenoUzivatele) < 1)
+            strcat(jmenoUzivatele, "DefaultUser");
+        if (strlen(jmenoProtihrace) < 1)
+            strcat(jmenoProtihrace, "DefaultOponent");
+        if (strlen(jmenoBota) < 1)
+            strcat(jmenoBota, "DefaultBot");
     }
     if (access("settingsNumbers.sett", F_OK) == 0)
     {
-    FILE *fileUlozeniRozmeru = fopen("settingsNumbers.sett", "r");
-    if (fileUlozeniRozmeru == NULL)
-        return 12;
-    int check = fscanf(fileUlozeniRozmeru, "%i %i", &sirkaHerniPlochy, &vyskaHerniPlochy);
-    if (check != 2)
-    {
-        return 4;
-    }
-    if (sirkaHerniPlochy < 3)
-        sirkaHerniPlochy = 3;
-    if (vyskaHerniPlochy < 3)
-        vyskaHerniPlochy = 3;
-    fclose(fileUlozeniRozmeru);
-    
+        FILE *fileUlozeniRozmeru = fopen("settingsNumbers.sett", "r");
+        if (fileUlozeniRozmeru == NULL)
+            return 12;
+        int check = fscanf(fileUlozeniRozmeru, "%i %i", &sirkaHerniPlochy, &vyskaHerniPlochy);
+        if (check != 2)
+        {
+            return 4;
+        }
+        if (sirkaHerniPlochy < 3)
+            sirkaHerniPlochy = 3;
+        if (vyskaHerniPlochy < 3)
+            vyskaHerniPlochy = 3;
+        fclose(fileUlozeniRozmeru);
     }
     return 0;
 }
@@ -192,10 +192,10 @@ void settingsInterface(void)
             }
             else if (strcmp(argument, "hlp") == 0)
                 printf("Použití:\nname argument parametr\nArgumenty:\nhlp - zobrazí tuto nápovědu\nusr - parametr přečte jako jméno uživatele\nbot - parametr přečte jako jméno bota v singleplayeru\npth - parametr přečte jako jméno protihráče\n");
-                else
-                {
-                    printf("Tetno argument nerozpoznávám\n");
-                }
+            else
+            {
+                printf("Tetno argument nerozpoznávám\n");
+            }
         }
         else if (strcmp(prikaz, "rozm") == 0)
         {

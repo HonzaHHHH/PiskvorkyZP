@@ -14,11 +14,12 @@
 #include <string.h>
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
+#include "multiplayer.h"
 // mam trochu radsi, kdyz kod zacina nahore a funkce jsou dole
 void napisPiskvorkyAMenu(int aktualniCisloPolicka); // vypis menu a zabarveneho policka
 int hlavniMenu(void);                               // bude vracet možnost
 void funkceKonce(void);                             // hmmm... to se celkem i rýmuje :-)
-//void settingsFunkce(void);                          // celkem by mě zajímalo, proč píšu názvy funckí v aj i čj, docela by mě zajímalo, kdy začnu používat němčinu a polštinu :-)
+// void settingsFunkce(void);                          // celkem by mě zajímalo, proč píšu názvy funckí v aj i čj, docela by mě zajímalo, kdy začnu používat němčinu a polštinu :-)
 
 // -------------------------------------------------------------------
 // MAIN
@@ -28,7 +29,7 @@ int main(void)
 {
     // SETUP ---------------------
     if (loadSettings() != 0)
-    printf("Chyba v načítání dat\n");
+        printf("Chyba v načítání dat\n");
     setupTerminalFunctions();
     // -------------------------------------------------
     // kontrola systemu (mac ma smulu)
@@ -88,6 +89,9 @@ int hlavniMenu()
             zapnoutKanonickyRezim();
             switch (moznostHlavnihoMenu)
             {
+            case 2:
+                multiplayerStart();
+                break;
             case 3:
                 settingsInterface();
                 break;
