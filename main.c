@@ -61,12 +61,8 @@ int hlavniMenu()
     while (1)
     {
         clearScreen();
-        vypnoutKanonickyRezim();
-        // Pro vypnutí kanonického režimu
-        // struktury pro nastaveni terminalů
-        // ----------------------------------------------------
         napisPiskvorkyAMenu(moznostHlavnihoMenu);
-        polozkaMenu = getchar();
+        polozkaMenu = getCharNow();
         switch (polozkaMenu)
         {
         case 'w':
@@ -86,7 +82,6 @@ int hlavniMenu()
                 moznostHlavnihoMenu++;
             break;
         case '\n':
-            zapnoutKanonickyRezim();
             switch (moznostHlavnihoMenu)
             {
             case 2:
@@ -152,8 +147,7 @@ void funkceKonce(void)
     while (zadano)
     {
         char znak;
-        vypnoutKanonickyRezim();
-        znak = getchar();
+        znak = getCharNow();
         switch (znak)
         {
         case 'a':

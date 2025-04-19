@@ -9,4 +9,6 @@ void zapnoutKanonickyRezim(void);
 
 void clearScreen(void);
 
+char getCharNow(void);
+
 #endif

@@ -1,31 +1,32 @@
 #include "terminalSettings.h"
-#include <termios.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
+#ifdef __linux__
+#include <termios.h>
 struct termios staryTerminal, NovyTerminal;
+
+void vypnoutKanonickyRezim(void)
+{
+    // Pro vypnutí kanonického režimu
+
+    // vypnutí
+    tcsetattr(STDIN_FILENO, TCSANOW, &NovyTerminal);
+}
+
+void zapnoutKanonickyRezim(void)
+{
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &staryTerminal);
+}
+#endif
 
 void setupTerminalFunctions(void)
 {
     tcgetattr(STDIN_FILENO, &staryTerminal);
     tcgetattr(STDIN_FILENO, &NovyTerminal);
     NovyTerminal.c_lflag &= ~(ICANON | ECHO);
-}
-
-void vypnoutKanonickyRezim(void)
-{
-// Pro vypnutí kanonického režimu
-#ifdef __linux__
-    // vypnutí
-    tcsetattr(STDIN_FILENO, TCSANOW, &NovyTerminal);
-#endif
-}
-
-void zapnoutKanonickyRezim(void)
-{
-#ifdef __linux__
-    tcsetattr(STDIN_FILENO, TCSANOW, &staryTerminal);
-#endif
 }
 
 void clearScreen(void)
@@ -35,4 +36,15 @@ void clearScreen(void)
 #else
     system("cls");
 #endif
+}
+
+char getCharNow(void)
+{
+    char c;
+#ifdef __linux__
+    vypnoutKanonickyRezim();
+    c = getchar();
+    zapnoutKanonickyRezim();
+#endif
+    return c;
 }
