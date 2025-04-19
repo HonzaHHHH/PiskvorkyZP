@@ -9,4 +9,7 @@ char* getBotName(void);
 
 int loadSettings(void);
 
+int getSirkaHerniPlochy(void);
+int getVyskaHerniPlochy(void);
+
 #endif
