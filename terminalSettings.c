@@ -20,7 +20,6 @@ void zapnoutKanonickyRezim(void)
 
     tcsetattr(STDIN_FILENO, TCSANOW, &staryTerminal);
 }
-#endif
 
 void setupTerminalFunctions(void)
 {
@@ -28,6 +27,14 @@ void setupTerminalFunctions(void)
     tcgetattr(STDIN_FILENO, &NovyTerminal);
     NovyTerminal.c_lflag &= ~(ICANON | ECHO);
 }
+#endif
+
+
+#ifdef _Win32
+
+#include <conio.h>
+#endif
+
 
 void clearScreen(void)
 {
