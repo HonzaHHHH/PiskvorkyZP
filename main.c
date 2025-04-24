@@ -29,7 +29,9 @@ int main(void)
     // SETUP ---------------------
     if (loadSettings() != 0)
         printf("Chyba v načítání dat\n");
+    #ifdef __linux__
     setupTerminalFunctions();
+    #endif
     // -------------------------------------------------
     // kontrola systemu (mac ma smulu)
     printf("System___");
