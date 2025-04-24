@@ -30,7 +30,7 @@ void setupTerminalFunctions(void)
 #endif
 
 
-#ifdef _Win32
+#ifdef WINDOWS
 
 #include <conio.h>
 #endif
@@ -44,7 +44,6 @@ void clearScreen(void)
     system("cls");
 #endif
 }
-
 char getCharNow(void)
 {
     char c;
@@ -52,6 +51,9 @@ char getCharNow(void)
     vypnoutKanonickyRezim();
     c = getchar();
     zapnoutKanonickyRezim();
+#endif
+#ifdef WINDOWS
+    c = getch();
 #endif
     return c;
 }
