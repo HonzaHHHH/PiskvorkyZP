@@ -21,18 +21,23 @@ void multiplayerStart(void)
 
 void nakreslitHerniPole()
 {
-
+    zapnoutKanonickyRezim();
     for (int x = 0; x < getSirkaHerniPlochy(); x++)
     {
         printf("%c%c", vodorovnaHranice, vodorovnaHranice);
     }
-    printf("%c", vodorovnaHranice);
-    //asm ("movl ah, 0x0e\n\tmovl al, 0x0d\n\tint 0x10\n\tmovl al, 0x0a\n\tint 0x10");
-    printf("\n");
-    for (int x = 0; x < getSirkaHerniPlochy(); x++)
+    printf("%c\n", vodorovnaHranice);
+    fflush(stdout);
+    for (int yy = 0; yy < getVyskaHerniPlochy(); yy++)
     {
-        printf("%c ", svislaHranice);
+        fflush(stdout);
+        printf("mezera");
+        fflush(stdout);
+        for (int x = 0; x < getSirkaHerniPlochy(); x++)
+        {
+            printf("%c ", svislaHranice);
+        }
+        // PUTS("%c\n", svislaHranice);
+        printf("%i, %i, %c %c", getSirkaHerniPlochy(), getVyskaHerniPlochy(), vodorovnaHranice, svislaHranice);
     }
-    printf("%c", svislaHranice);
-    printf("%i, %i, %c %c", getSirkaHerniPlochy(), getVyskaHerniPlochy(), vodorovnaHranice, svislaHranice);
 }
