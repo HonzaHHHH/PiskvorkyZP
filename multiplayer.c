@@ -28,7 +28,7 @@ void nakreslitHerniPole()
     }
     printf("%c", vodorovnaHranice);
     //asm ("movl ah, 0x0e\n\tmovl al, 0x0d\n\tint 0x10\n\tmovl al, 0x0a\n\tint 0x10");
-    //printf("\n");
+    printf("\n");
     for (int x = 0; x < getSirkaHerniPlochy(); x++)
     {
         printf("%c ", svislaHranice);

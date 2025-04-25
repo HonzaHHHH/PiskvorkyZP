@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <locale.h>
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "multiplayer.h"
@@ -26,12 +27,13 @@ void funkceKonce(void);                             // hmmm... to se celkem i r�
 
 int main(void)
 {
+    setlocale(LC_ALL, "cs_CZ.UTF-8");
     // SETUP ---------------------
     if (loadSettings() != 0)
         printf("Chyba v načítání dat\n");
-    #ifdef __linux__
+#ifdef __linux__
     setupTerminalFunctions();
-    #endif
+#endif
     // -------------------------------------------------
     // kontrola systemu (mac ma smulu)
     printf("System___");
@@ -83,6 +85,20 @@ int hlavniMenu()
                 moznostHlavnihoMenu++;
             break;
         case '\n':
+            switch (moznostHlavnihoMenu)
+            {
+            case 2:
+                multiplayerStart();
+                break;
+            case 3:
+                settingsInterface();
+                break;
+            case 4:
+                funkceKonce();
+                break;
+            }
+            break;
+        case 13:
             switch (moznostHlavnihoMenu)
             {
             case 2:

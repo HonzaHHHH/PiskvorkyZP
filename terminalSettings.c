@@ -6,31 +6,36 @@
 #ifdef __linux__
 #include <termios.h>
 struct termios staryTerminal, NovyTerminal;
-
+#endif
 void vypnoutKanonickyRezim(void)
 {
     // Pro vypnutí kanonického režimu
 
     // vypnutí
+    #ifdef __linux__
     tcsetattr(STDIN_FILENO, TCSANOW, &NovyTerminal);
+    #endif
 }
 
 void zapnoutKanonickyRezim(void)
 {
-
+    #ifdef __linux__
     tcsetattr(STDIN_FILENO, TCSANOW, &staryTerminal);
+    #endif
 }
 
 void setupTerminalFunctions(void)
 {
+    #ifdef __linux__
     tcgetattr(STDIN_FILENO, &staryTerminal);
     tcgetattr(STDIN_FILENO, &NovyTerminal);
     NovyTerminal.c_lflag &= ~(ICANON | ECHO);
+    #endif
 }
-#endif
 
 
-#ifdef WINDOWS
+
+#ifdef _WIN32
 
 #include <conio.h>
 #endif
@@ -52,7 +57,7 @@ char getCharNow(void)
     c = getchar();
     zapnoutKanonickyRezim();
 #endif
-#ifdef WINDOWS
+#ifdef _WIN32
     c = getch();
 #endif
     return c;
