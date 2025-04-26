@@ -11,6 +11,8 @@ void nakreslitHerniPole();
 void multiplayerStart(void)
 {
     clearScreen();
+    short herniPlochaPouzeHraci[getSirkaHerniPlochy()][getVyskaHerniPlochy()];
+    short herniPlochaIMezery[getSirkaHerniPlochy() * 2 + 1][getVyskaHerniPlochy() * 2 + 1];
     printf("MULTIPLAYER\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nPrvní hráč bude používat klávesy WASD, druhý IJKL a oba dva samozřejmě enter\n");
     char startovniKlavesa = getCharNow();
     clearScreen();
@@ -21,23 +23,4 @@ void multiplayerStart(void)
 
 void nakreslitHerniPole()
 {
-    zapnoutKanonickyRezim();
-    for (int x = 0; x < getSirkaHerniPlochy(); x++)
-    {
-        //printf("%c%c", vodorovnaHranice, vodorovnaHranice);
-    }
-    putc(vodorovnaHranice, stdout);
-    fflush(stdout);
-    for (int yy = 0; yy < getVyskaHerniPlochy(); yy++)
-    {
-        fflush(stdout);
-        printf("mezera");
-        fflush(stdout);
-        for (int x = 0; x < getSirkaHerniPlochy(); x++)
-        {
-            //printf("%c ", svislaHranice);
-        }
-        putc(svislaHranice, stdout);
-        printf("%i, %i, %c %c", getSirkaHerniPlochy(), getVyskaHerniPlochy(), vodorovnaHranice, svislaHranice);
-    }
 }
