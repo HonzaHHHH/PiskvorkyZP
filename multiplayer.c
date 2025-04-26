@@ -24,9 +24,9 @@ void nakreslitHerniPole()
     zapnoutKanonickyRezim();
     for (int x = 0; x < getSirkaHerniPlochy(); x++)
     {
-        printf("%c%c", vodorovnaHranice, vodorovnaHranice);
+        //printf("%c%c", vodorovnaHranice, vodorovnaHranice);
     }
-    printf("%c\n", vodorovnaHranice);
+    putc(vodorovnaHranice, stdout);
     fflush(stdout);
     for (int yy = 0; yy < getVyskaHerniPlochy(); yy++)
     {
@@ -35,9 +35,9 @@ void nakreslitHerniPole()
         fflush(stdout);
         for (int x = 0; x < getSirkaHerniPlochy(); x++)
         {
-            printf("%c ", svislaHranice);
+            //printf("%c ", svislaHranice);
         }
-        // PUTS("%c\n", svislaHranice);
+        putc(svislaHranice, stdout);
         printf("%i, %i, %c %c", getSirkaHerniPlochy(), getVyskaHerniPlochy(), vodorovnaHranice, svislaHranice);
     }
 }
