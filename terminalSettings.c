@@ -64,6 +64,6 @@ char getCharNow(void)
 }
 void poziceKurzoru(int OsaX, int OsaY)
 {
-    printf("\033[%i;%iH", OsaX, OsaY);
+    printf("\033[%i;%iH", OsaY, OsaX);
     return;
 }
