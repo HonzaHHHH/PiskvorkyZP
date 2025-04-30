@@ -29,26 +29,31 @@ void multiplayerStart(void)
 void nakreslitHerniPole()
 {
     clearScreen();
-    printf("%i, %i", getSirkaHerniPlochy(), getVyskaHerniPlochy());
-    poziceKurzoru(0, 0);
+    poziceKurzoru(1, 1);
     for (int xxx = 0; xxx < (getSirkaHerniPlochy() * 2); xxx++)
     {
-        //printf("—");
+        fflush(stdout);
+        printf("—");
     }
-    for (int yyy = 1; yyy <= getVyskaHerniPlochy(); yyy += 2)
+    printf("—");
+    for (int yyy = 2; yyy <= getVyskaHerniPlochy(); yyy += 2)
     {
-        poziceKurzoru(0, yyy);
+        poziceKurzoru(1, yyy);
         for (int ccc = 0; ccc < getSirkaHerniPlochy(); ccc++)
         {
             printf("| ");
+            fflush(stdout);
         }
         printf("|");
-        poziceKurzoru(0, yyy++);
+        fflush(stdout);
+        poziceKurzoru(1, yyy + 1);
         for (int xxx = 0; xxx < (getSirkaHerniPlochy() * 2); xxx++)
         {
+            fflush(stdout);
             printf("—");
         }
+        printf("—");
     }
-    printf("%i, %i", getSirkaHerniPlochy(), getVyskaHerniPlochy());
+    fflush(stdout);
     sleep(3);
 }
