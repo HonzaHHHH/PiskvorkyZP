@@ -55,5 +55,5 @@ void nakreslitHerniPole()
         printf("—");
     }
     fflush(stdout);
-    sleep(3);
+    
 }
