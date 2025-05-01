@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <pthread.h>
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "ovladani.h"
 char vodorovnaHranice = 45;
 char svislaHranice = 124;
-void nakreslitHerniPole();
+void nakreslitHerniPole(int* poziceKurzoruSouradnice, int* souradniceHracu);
 
 void multiplayerStart(void)
 {
@@ -21,14 +22,14 @@ void multiplayerStart(void)
     if (startovniKlavesa == 'e' || startovniKlavesa == 'E')
         return;
     int poziceKurzoruSouradnice[] = {getSirkaHerniPlochy() / 2, getVyskaHerniPlochy() / 2}; // x y
-    nakreslitHerniPole(poziceKurzoruSouradnice);
+    nakreslitHerniPole(poziceKurzoruSouradnice, herniPlochaPouzeHraci);
     char moznostiPohybuKurzoru;
     short hrac = 1; // jedna nebo dve
     while (1)
     {
-        nakreslitHerniPole(poziceKurzoruSouradnice);
+        nakreslitHerniPole(poziceKurzoruSouradnice, herniPlochaPouzeHraci);
         moznostiPohybuKurzoru = getCharNow();
-        switch (pohybOdHrace(1))
+        switch (pohybOdHrace(hrac))
         {
             case 1:
             {
@@ -50,11 +51,20 @@ void multiplayerStart(void)
                 poziceKurzoruSouradnice[0]--;
                 break;
             }
+            case 0:
+            {
+                herniPlochaPouzeHraci[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] = hrac;
+                if (hrac == 1)
+                    hrac = 2;
+                else if (hrac == 2)
+                    hrac = 1;
+                break;
+            }
         }
     }
 }
 
-void nakreslitHerniPole(int* poziceKurzoruSouradnice)
+void nakreslitHerniPole(int* poziceKurzoruSouradnice, int* souradniceHracu)
 {
     clearScreen();
     poziceKurzoru(1, 1);
@@ -84,5 +94,6 @@ void nakreslitHerniPole(int* poziceKurzoruSouradnice)
     }
     fflush(stdout);
     poziceKurzoru(poziceKurzoruSouradnice[0], poziceKurzoruSouradnice[1]);
+    
     
 }

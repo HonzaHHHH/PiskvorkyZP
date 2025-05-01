@@ -35,6 +35,10 @@ int pohybOdHrace(int povoleneKlavesy)
                 {
                     return 4;
                 }
+                else if (klavesnicePohybu == '\n')
+                {
+                    return 0;
+                }
             }
             break;
             
@@ -60,6 +64,10 @@ int pohybOdHrace(int povoleneKlavesy)
                 else if (klavesnicePohybu == 'j' || klavesnicePohybu == 'J')
                 {
                     return 4;
+                }
+                else if (klavesnicePohybu == '\n')
+                {
+                    return 0;
                 }
             }
             break;
