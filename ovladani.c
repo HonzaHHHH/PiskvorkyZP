@@ -36,6 +36,7 @@ int pohybOdHrace(int povoleneKlavesy)
                     return 4;
                 }
             }
+            break;
             
         }
         case 2:
@@ -61,6 +62,7 @@ int pohybOdHrace(int povoleneKlavesy)
                     return 4;
                 }
             }
+            break;
             
         }
     }
