@@ -8,18 +8,15 @@
 #include "ovladani.h"
 char vodorovnaHranice = 45;
 char svislaHranice = 124;
-short **herniPlochaPouzeHraci;
+short** herniPlochaPouzeHraci;
 void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu);
 
 void inicializaceHernihoPole()
 {
+    herniPlochaPouzeHraci = calloc(getSirkaHerniPlochy(), sizeof(short) * getVyskaHerniPlochy());
     for (int xx = 0; xx < getSirkaHerniPlochy(); xx++)
     {
-        herniPlochaPouzeHraci = calloc(getSirkaHerniPlochy(), sizeof(short));
-        for (int xx = 0; xx < getSirkaHerniPlochy(); xx++)
-        {
-            herniPlochaPouzeHraci[xx] = malloc(getVyskaHerniPlochy() * sizeof(short));
-        }
+        herniPlochaPouzeHraci[xx] = calloc(getVyskaHerniPlochy(), sizeof(short));
     }
 }
 
