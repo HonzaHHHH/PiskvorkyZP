@@ -8,12 +8,20 @@
 #include "ovladani.h"
 char vodorovnaHranice = 45;
 char svislaHranice = 124;
-void nakreslitHerniPole(int* poziceKurzoruSouradnice, int* souradniceHracu);
+short **herniPlochaPouzeHraci;
+void nakreslitHerniPole(int* poziceKurzoruSouradnice, short* souradniceHracu);
+
+void inicializaceHernihoPole()
+{
+    for (int xx = 0; xx < getSirkaHerniPlochy(); xx++)
+    {
+        
+    }
+}
 
 void multiplayerStart(void)
 {
     clearScreen();
-    short herniPlochaPouzeHraci[getSirkaHerniPlochy()][getVyskaHerniPlochy()]; // pole x y hrac 0 = nikdo, 1 - prvni hrac, 2 - druhy hrac
     memset(herniPlochaPouzeHraci, 0, sizeof(herniPlochaPouzeHraci));
     // short herniPlochaIMezery[getSirkaHerniPlochy() * 2 + 1][getVyskaHerniPlochy() * 2 + 1];
     printf("MULTIPLAYER\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nPrvní hráč bude používat klávesy WASD, druhý IJKL a oba dva samozřejmě enter\n");
@@ -64,7 +72,7 @@ void multiplayerStart(void)
     }
 }
 
-void nakreslitHerniPole(int* poziceKurzoruSouradnice, int* souradniceHracu)
+void nakreslitHerniPole(int* poziceKurzoruSouradnice, short* souradniceHracu)
 {
     clearScreen();
     poziceKurzoru(1, 1);
