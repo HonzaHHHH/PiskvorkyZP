@@ -49,25 +49,25 @@ void multiplayerStart(void)
         case 1:
         {
             if (poziceKurzoruSouradnice[1] > 1)
-                poziceKurzoruSouradnice[1] -= 2;
+                poziceKurzoruSouradnice[1]--;
             break;
         }
         case 2:
         {
-            if (poziceKurzoruSouradnice[0] < getSirkaHerniPlochy() * 2)
-                poziceKurzoruSouradnice[0] += 2;
+            if (poziceKurzoruSouradnice[0] < getSirkaHerniPlochy())
+                poziceKurzoruSouradnice[0]++;
             break;
         }
         case 3:
-        {
-            if (poziceKurzoruSouradnice[1] < getVyskaHerniPlochy() * 2)
-                poziceKurzoruSouradnice[1] += 2;
+        { 
+            if (poziceKurzoruSouradnice[1] < getVyskaHerniPlochy())
+                poziceKurzoruSouradnice[1]++;
             break;
         }
         case 4:
         {
             if (poziceKurzoruSouradnice[0] > 1)
-                poziceKurzoruSouradnice[0] -= 2;
+                poziceKurzoruSouradnice[0]--;
             break;
         }
         case 0:
@@ -98,8 +98,8 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
         printf("—");
     }
     printf("—");
-    for (int yyy = 2; yyy <= getVyskaHerniPlochy(); yyy += 2)
-    {
+    for (int yyy = 2; yyy <= getVyskaHerniPlochy(); yyy++)
+    {// sem se jeste to musi dodelat vodorovna hraice
         poziceKurzoru(1, yyy);
         for (int ccc = 0; ccc < getSirkaHerniPlochy(); ccc++)
         {
@@ -117,5 +117,5 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
         printf("—");
     }
     fflush(stdout);
-    poziceKurzoru(poziceKurzoruSouradnice[0], poziceKurzoruSouradnice[1]);
+    poziceKurzoru(poziceKurzoruSouradnice[0] * 2, poziceKurzoruSouradnice[1] * 2);
 }
