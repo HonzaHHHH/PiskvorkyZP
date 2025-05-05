@@ -43,7 +43,6 @@ void multiplayerStart(void)
     while (1)
     {
         nakreslitHerniPole(poziceKurzoruSouradnice, herniPlochaPouzeHraci);
-        moznostiPohybuKurzoru = getCharNow();
         switch (pohybOdHrace(hrac))
         {
         case 1:
