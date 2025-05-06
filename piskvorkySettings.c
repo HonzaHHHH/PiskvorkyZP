@@ -14,7 +14,7 @@ int vyskaHerniPlochy;
 char *getUserFolderForConfigFiles()
 {
 #ifdef __linux__
-    char uzivatelovaDomovskaSlozka[] = getenv("HOME");
+    //char uzivatelovaDomovskaSlozka[] = getenv("HOME");
     
 #endif
 }
