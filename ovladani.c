@@ -13,73 +13,77 @@ int pohybOdHrace(int povoleneKlavesy)
     char klavesnicePohybu;
     switch (povoleneKlavesy)
     {
-        case 1:
+    case 1:
+    {
+        while (1)
         {
-            while (1)
+            klavesnicePohybu = getCharNow();
+            if (klavesnicePohybu == 'w' || klavesnicePohybu == 'W')
             {
-                klavesnicePohybu = getCharNow();
-                if (klavesnicePohybu == 'w' || klavesnicePohybu == 'W')
-                {
-                    return 1;
-                }
-                else if (klavesnicePohybu == 'd' || klavesnicePohybu == 'D')
-                {
-
-                    return 2;
-                }
-                else if (klavesnicePohybu == 's' || klavesnicePohybu == 'S')
-                {
-                    return 3;
-                }
-                else if (klavesnicePohybu == 'a' || klavesnicePohybu == 'A')
-                {
-                    return 4;
-                }
-                else if (klavesnicePohybu == '\n')
-                {
-                    return 0;
-                }
-                else if (klavesnicePohybu == 'z' || klavesnicePohybu == 'Z');
-                {
-                    return -1;
-                }
+                return 1;
             }
-            break;
-            
+            else if (klavesnicePohybu == 'd' || klavesnicePohybu == 'D')
+            {
+
+                return 2;
+            }
+            else if (klavesnicePohybu == 's' || klavesnicePohybu == 'S')
+            {
+                return 3;
+            }
+            else if (klavesnicePohybu == 'a' || klavesnicePohybu == 'A')
+            {
+                return 4;
+            }
+            else if (klavesnicePohybu == '\n')
+            {
+                return 0;
+            }
+            else if (klavesnicePohybu == 'z' || klavesnicePohybu == 'Z')
+            {
+                return -1;
+            }
+            else 
+                return -5;
         }
-        case 2:
+        break;
+    }
+    case 2:
+    {
+        while (1)
         {
-            while (1)
+            klavesnicePohybu = getCharNow();
+            if (klavesnicePohybu == 'i' || klavesnicePohybu == 'I')
             {
-                klavesnicePohybu = getCharNow();
-                if (klavesnicePohybu == 'i' || klavesnicePohybu == 'I')
-                {
-                    return 1;
-                }
-                else if (klavesnicePohybu == 'l' || klavesnicePohybu == 'L')
-                {
-
-                    return 2;
-                }
-                else if (klavesnicePohybu == 'k' || klavesnicePohybu == 'K')
-                {
-                    return 3;
-                }
-                else if (klavesnicePohybu == 'j' || klavesnicePohybu == 'J')
-                {
-                    return 4;
-                }
-                else if (klavesnicePohybu == '\n')
-                {
-                    return 0;
-                }
-                else if (klavesnicePohybu == 'z' || klavesnicePohybu == 'Z');
-                {
-                    return -1;
-                }
+                return 1;
             }
-            break;
-            
+            else if (klavesnicePohybu == 'l' || klavesnicePohybu == 'L')
+            {
+
+                return 2;
+            }
+            else if (klavesnicePohybu == 'k' || klavesnicePohybu == 'K')
+            {
+                return 3;
+            }
+            else if (klavesnicePohybu == 'j' || klavesnicePohybu == 'J')
+            {
+                return 4;
+            }
+            else if (klavesnicePohybu == '\n')
+            {
+                return 0;
+            }
+            else if (klavesnicePohybu == 'z' || klavesnicePohybu == 'Z')
+            {
+                return -1;
+            }
+            else
+            {
+                return -5;
+            }
         }
+        break;
+    }
     }
 }

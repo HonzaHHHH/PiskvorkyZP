@@ -46,7 +46,7 @@ void multiplayerStart(void)
     clearScreen();
     if (startovniKlavesa == 'e' || startovniKlavesa == 'E')
         return;
-    unsigned int poziceKurzoruSouradnice[] = {getSirkaHerniPlochy() / 2 + 1, getVyskaHerniPlochy() / 2 + 1}; // x y
+    unsigned int poziceKurzoruSouradnice[] = {getSirkaHerniPlochy() / 2 - 1, getVyskaHerniPlochy() / 2 - 1}; // x y
     nakreslitHerniPole(poziceKurzoruSouradnice, herniPlochaPouzeHraci);
     char moznostiPohybuKurzoru;
     short hrac = 1; // jedna nebo dve
