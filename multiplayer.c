@@ -98,7 +98,7 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
     }
     printf("—");
     for (int yyy = 2; yyy <= getVyskaHerniPlochy() * 2; yyy += 2)
-    {// sem se jeste to musi dodelat vodorovna hraice
+    {
         poziceKurzoru(1, yyy);
         for (int ccc = 0; ccc < getSirkaHerniPlochy(); ccc++)
         {
