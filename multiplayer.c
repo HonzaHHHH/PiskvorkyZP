@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+// #include <unistd.h> nevim co na to bude rikat win tak zatim nechavam zakomentovany
 #include <string.h>
 #include <pthread.h>
 #include "terminalSettings.h"
@@ -8,15 +8,22 @@
 #include "ovladani.h"
 char vodorovnaHranice = 45;
 char svislaHranice = 124;
-short** herniPlochaPouzeHraci;
+short **MainHerniPlocha;
 void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu);
 
 void inicializaceHernihoPole()
 {
-    herniPlochaPouzeHraci = malloc(getSirkaHerniPlochy() * sizeof(short *));
+    MainHerniPlocha = malloc(getSirkaHerniPlochy() * sizeof(short *));
     for (int xx = 0; xx < getSirkaHerniPlochy(); xx++)
     {
-        herniPlochaPouzeHraci[xx] = calloc(getVyskaHerniPlochy(), sizeof(short));
+        MainHerniPlocha[xx] = calloc(getVyskaHerniPlochy(), sizeof(short));
+    }
+    for (int qq = 0; qq < getSirkaHerniPlochy(); qq++)
+    {
+        for (int ww = 0; ww < getVyskaHerniPlochy(); ww++)
+        {
+            MainHerniPlocha[qq][ww] = 0;
+        }
     }
 }
 
@@ -24,22 +31,15 @@ void likvidaceHernihoPole()
 {
     for (int fff = 0; fff < getSirkaHerniPlochy(); fff++)
     {
-        free(herniPlochaPouzeHraci[fff]);
+        free(MainHerniPlocha[fff]);
     }
-    free(herniPlochaPouzeHraci);
+    free(MainHerniPlocha);
 }
 
 void multiplayerStart(void)
 {
     inicializaceHernihoPole();
     clearScreen();
-    for (int qq = 0; qq < getSirkaHerniPlochy(); qq++)
-    {
-        for (int ww = 0; ww < getVyskaHerniPlochy(); ww++)
-        {
-            herniPlochaPouzeHraci[qq][ww] = 0;
-        }
-    }
     // short herniPlochaIMezery[getSirkaHerniPlochy() * 2 + 1][getVyskaHerniPlochy() * 2 + 1];
     printf("MULTIPLAYER\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nPrvní hráč bude používat klávesy WASD, druhý IJKL a oba dva samozřejmě enter\nBěhem hry můžete sami odejít zmáčknutím klávesy Z\n");
     char startovniKlavesa = getCharNow();
@@ -47,12 +47,12 @@ void multiplayerStart(void)
     if (startovniKlavesa == 'e' || startovniKlavesa == 'E')
         return;
     unsigned int poziceKurzoruSouradnice[] = {getSirkaHerniPlochy() / 2 - 1, getVyskaHerniPlochy() / 2 - 1}; // x y
-    nakreslitHerniPole(poziceKurzoruSouradnice, herniPlochaPouzeHraci);
+    nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlocha);
     char moznostiPohybuKurzoru;
     short hrac = 1; // jedna nebo dve
     while (1)
     {
-        nakreslitHerniPole(poziceKurzoruSouradnice, herniPlochaPouzeHraci);
+        nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlocha);
         switch (pohybOdHrace(hrac))
         {
         case 1:
@@ -68,7 +68,7 @@ void multiplayerStart(void)
             break;
         }
         case 3:
-        { 
+        {
             if (poziceKurzoruSouradnice[1] < getVyskaHerniPlochy())
                 poziceKurzoruSouradnice[1]++;
             break;
@@ -81,13 +81,17 @@ void multiplayerStart(void)
         }
         case 0:
         {
-            if (herniPlochaPouzeHraci[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] == 0)
+            if (MainHerniPlocha[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] == 0)
             {
-            herniPlochaPouzeHraci[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] = hrac;
-            if (hrac == 1)
-                hrac = 2;
-            else if (hrac == 2)
-                hrac = 1;
+                MainHerniPlocha[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] = hrac;
+                if (hrac == 1)
+                {
+                    hrac = 2;
+                }
+                else if (hrac == 2)
+                {
+                    hrac = 1;
+                }
             }
             break;
         }
@@ -96,9 +100,12 @@ void multiplayerStart(void)
             likvidaceHernihoPole();
             return;
         }
+        default:
+            printf("pekne blby");
+            break;
         }
     }
-    printf("ukrutne smutny konec");
+    printf("ukrutne smutny konec"); // ladici prompt nemelo by nastat
 }
 
 void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
@@ -140,15 +147,17 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
                 switch (souradniceHracu[aa][bb])
                 {
                 case 1:
-                    
+
                     printf("X");
                     break;
-                case 2: 
+                case 2:
                     printf("O");
                     break;
                 }
             }
         }
     }
+    poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 3);
+    printf("Piskvorky - multiplayer\n%s vs. %s", getUserName(), getOponentName());
     poziceKurzoru(poziceKurzoruSouradnice[0] * 2, poziceKurzoruSouradnice[1] * 2);
 }
