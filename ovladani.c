@@ -35,7 +35,7 @@ int pohybOdHrace(int povoleneKlavesy)
             {
                 return 4;
             }
-            else if (klavesnicePohybu == '\n')
+            else if (klavesnicePohybu == '\n' || klavesnicePohybu == '\r')
             {
                 return 0;
             }
@@ -43,8 +43,6 @@ int pohybOdHrace(int povoleneKlavesy)
             {
                 return -1;
             }
-            else 
-                return -5;
         }
         break;
     }
@@ -70,17 +68,13 @@ int pohybOdHrace(int povoleneKlavesy)
             {
                 return 4;
             }
-            else if (klavesnicePohybu == '\n')
+            else if (klavesnicePohybu == '\n' || klavesnicePohybu == '\r')
             {
                 return 0;
             }
             else if (klavesnicePohybu == 'z' || klavesnicePohybu == 'Z')
             {
                 return -1;
-            }
-            else
-            {
-                return -5;
             }
         }
         break;

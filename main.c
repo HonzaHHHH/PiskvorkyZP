@@ -42,6 +42,7 @@ int main(void)
     printf("OK");
 #elif _WIN32
     printf("OK");
+    system("chcp 65001");
 #else
     printf("ERROR\nNepodporovany system!");
     exit(1);

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 // #include <unistd.h> nevim co na to bude rikat win tak zatim nechavam zakomentovany
 #include <string.h>
-#include <pthread.h>
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "ovladani.h"
