@@ -81,11 +81,14 @@ void multiplayerStart(void)
         }
         case 0:
         {
+            if (herniPlochaPouzeHraci[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] == 0)
+            {
             herniPlochaPouzeHraci[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] = hrac;
             if (hrac == 1)
                 hrac = 2;
             else if (hrac == 2)
                 hrac = 1;
+            }
             break;
         }
         case -1:
@@ -95,6 +98,7 @@ void multiplayerStart(void)
         }
         }
     }
+    printf("ukrutne smutny konec");
 }
 
 void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
