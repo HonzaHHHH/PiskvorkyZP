@@ -116,5 +116,25 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
         printf("—");
     }
     fflush(stdout);
+    for (int aa = 0; aa < getSirkaHerniPlochy(); aa++)
+    {
+        for (int bb = 0; bb < getVyskaHerniPlochy(); bb++)
+        {
+            if (souradniceHracu[aa][bb] != 0)
+            {
+                poziceKurzoru(aa * 2, bb * 2);
+                switch (souradniceHracu[aa][bb])
+                {
+                case 1:
+                    
+                    printf("X");
+                    break;
+                case 2: 
+                    printf("O");
+                    break;
+                }
+            }
+        }
+    }
     poziceKurzoru(poziceKurzoruSouradnice[0] * 2, poziceKurzoruSouradnice[1] * 2);
 }
