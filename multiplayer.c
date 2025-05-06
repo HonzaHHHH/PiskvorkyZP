@@ -13,7 +13,7 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu);
 
 void inicializaceHernihoPole()
 {
-    herniPlochaPouzeHraci = calloc(getSirkaHerniPlochy(), sizeof(short) * getVyskaHerniPlochy());
+    herniPlochaPouzeHraci = malloc(getSirkaHerniPlochy() * sizeof(short *));
     for (int xx = 0; xx < getSirkaHerniPlochy(); xx++)
     {
         herniPlochaPouzeHraci[xx] = calloc(getVyskaHerniPlochy(), sizeof(short));
@@ -22,6 +22,10 @@ void inicializaceHernihoPole()
 
 void likvidaceHernihoPole()
 {
+    for (int fff = 0; fff < getSirkaHerniPlochy(); fff++)
+    {
+        free(herniPlochaPouzeHraci[fff]);
+    }
     free(herniPlochaPouzeHraci);
 }
 
@@ -29,7 +33,13 @@ void multiplayerStart(void)
 {
     inicializaceHernihoPole();
     clearScreen();
-    memset(herniPlochaPouzeHraci, 0, sizeof(herniPlochaPouzeHraci));
+    for (int qq = 0; qq < getSirkaHerniPlochy(); qq++)
+    {
+        for (int ww = 0; ww < getVyskaHerniPlochy(); ww++)
+        {
+            herniPlochaPouzeHraci[qq][ww] = 0;
+        }
+    }
     // short herniPlochaIMezery[getSirkaHerniPlochy() * 2 + 1][getVyskaHerniPlochy() * 2 + 1];
     printf("MULTIPLAYER\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nPrvní hráč bude používat klávesy WASD, druhý IJKL a oba dva samozřejmě enter\nBěhem hry můžete sami odejít zmáčknutím klávesy Z\n");
     char startovniKlavesa = getCharNow();
