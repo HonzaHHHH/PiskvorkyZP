@@ -19,6 +19,12 @@ char *getUserFolderForConfigFiles()
 #endif
 }
 
+int getMinimalCharsInRow(void)
+{
+    // tajůe funkce bude vracet cislo, kolik ma mít hrac policek v rade sloupci atd..., musim jeste dodelaat
+    return 5;
+}
+
 void settingsHelp(void)
 {
     printf("Příkazy:\nexit - vrátí se opět do menu\nquit - ukončí aplikaci\nhelp - zobrazí nápovědu\nhhlp - zobrazí, jak se zde mají používat příkazy\nclsc - vycisti tuto konzoli\ntisk - vypíše všechny uložené informace\nsave - uloží změny\nname - nastaví jména hráčů\nrozm - nastaví rozměry herní plochy\n");

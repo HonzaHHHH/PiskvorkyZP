@@ -45,10 +45,22 @@ int kontrolaZdaNekdoVyhral()
             if (MainHerniPlocha[oo][pp] != 0)
             {
                 short hracNaPolicku = MainHerniPlocha[oo][pp];
+                // jsem debil a ty smery v komentech mam obracene, ale fungovat to bude
                 if (MainHerniPlocha[oo][pp + 1] = hracNaPolicku) // nahoru
-                {}
+                {
+                    for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
+                    {
+                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            break;
+                        int pocetHracovychPolicekVRade = 0;
+                        if (MainHerniPlocha[oo][pp + aaa] == hracNaPolicku)
+                            pocetHracovychPolicekVRade++;
+                    }
+                }
                 if (MainHerniPlocha[oo + 1][pp + 1] = hracNaPolicku) // sikmo nahoru doprava
-                {}
+                {
+
+                }
                 if (MainHerniPlocha[oo + 1][pp] = hracNaPolicku) // doprava
                 {}
                 if (MainHerniPlocha[oo + 1][pp - 1] = hracNaPolicku) // sikmo dolu doprava
