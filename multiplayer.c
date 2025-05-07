@@ -35,6 +35,22 @@ void likvidaceHernihoPole()
     free(MainHerniPlocha);
 }
 
+int kontrolaZdaNekdoVyhral()
+{
+    for (int oo = 0; oo < getSirkaHerniPlochy(); oo++)
+    {
+        for (int pp = 0; pp < getVyskaHerniPlochy(); pp++)
+        {
+            // pro kazde policko na poli zjsitim jestli tam je nebo neni hrac
+            if (MainHerniPlocha[oo][pp] != 0)
+            {
+                short hracNaPolicku = MainHerniPlocha[oo][pp];
+                
+            }
+        }
+    }
+}
+
 void multiplayerStart(void)
 {
     inicializaceHernihoPole();
@@ -109,7 +125,7 @@ void multiplayerStart(void)
 
 void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
 {
-    clearScreen();
+    clearScreen(); // vypise herni polochu
     poziceKurzoru(1, 1);
     for (int xxx = 0; xxx < (getSirkaHerniPlochy() * 2); xxx++)
     {
@@ -136,7 +152,7 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
         printf("—");
     }
     fflush(stdout);
-    for (int aa = 0; aa < getSirkaHerniPlochy(); aa++)
+    for (int aa = 0; aa < getSirkaHerniPlochy(); aa++) // projede cele pole a pote vypise x nebo o
     {
         for (int bb = 0; bb < getVyskaHerniPlochy(); bb++)
         {
@@ -157,6 +173,6 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
         }
     }
     poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 3);
-    printf("Piskvorky - multiplayer\n%s vs. %s", getUserName(), getOponentName());
-    poziceKurzoru(poziceKurzoruSouradnice[0] * 2, poziceKurzoruSouradnice[1] * 2);
+    printf("Piskvorky - multiplayer\n%s vs. %s", getUserName(), getOponentName()); // vypise kdo vlastne hraje
+    poziceKurzoru(poziceKurzoruSouradnice[0] * 2, poziceKurzoruSouradnice[1] * 2); // nastavi kruzor tak aby ukazoval aktualne zvolene policko
 }
