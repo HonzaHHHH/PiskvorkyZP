@@ -45,9 +45,22 @@ int kontrolaZdaNekdoVyhral()
             if (MainHerniPlocha[oo][pp] != 0)
             {
                 short hracNaPolicku = MainHerniPlocha[oo][pp];
-                if (MainHerniPlocha[oo][pp + 1] = hracNaPolicku)
+                if (MainHerniPlocha[oo][pp + 1] = hracNaPolicku) // nahoru
                 {}
-                
+                if (MainHerniPlocha[oo + 1][pp + 1] = hracNaPolicku) // sikmo nahoru doprava
+                {}
+                if (MainHerniPlocha[oo + 1][pp] = hracNaPolicku) // doprava
+                {}
+                if (MainHerniPlocha[oo + 1][pp - 1] = hracNaPolicku) // sikmo dolu doprava
+                {}
+                if (MainHerniPlocha[oo][pp - 1] = hracNaPolicku) // dolu
+                {}
+                if (MainHerniPlocha[oo - 1][pp - 1] = hracNaPolicku) // sikmo dolu doleva
+                {}
+                if (MainHerniPlocha[oo - 1][pp] = hracNaPolicku) // doleva
+                {}
+                if (MainHerniPlocha[oo - 1][pp + 1] = hracNaPolicku) // sikmo nahoru doleva
+                {}
             }
         }
     }
