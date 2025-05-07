@@ -12,6 +12,6 @@ int loadSettings(void);
 int getSirkaHerniPlochy(void);
 int getVyskaHerniPlochy(void);
 
-int getMinimalCharsInRow(void)
+int getMinimalCharsInRow(void);
 
 #endif
