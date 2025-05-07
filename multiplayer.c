@@ -70,7 +70,6 @@ void multiplayerStart(void)
 {
     inicializaceHernihoPole();
     clearScreen();
-    // short herniPlochaIMezery[getSirkaHerniPlochy() * 2 + 1][getVyskaHerniPlochy() * 2 + 1];
     printf("MULTIPLAYER\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nPrvní hráč bude používat klávesy WASD, druhý IJKL a oba dva samozřejmě enter\nBěhem hry můžete sami odejít zmáčknutím klávesy Z\n");
     char startovniKlavesa = getCharNow();
     clearScreen();
@@ -83,7 +82,7 @@ void multiplayerStart(void)
     while (1)
     {
         nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlocha);
-        switch (pohybOdHrace(hrac))
+        switch (pohybOdHrace(hrac)) // pohybovani hrace
         {
         case 1:
         {
