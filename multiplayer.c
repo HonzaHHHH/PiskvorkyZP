@@ -45,6 +45,8 @@ int kontrolaZdaNekdoVyhral()
             if (MainHerniPlocha[oo][pp] != 0)
             {
                 short hracNaPolicku = MainHerniPlocha[oo][pp];
+                if (MainHerniPlocha[oo][pp + 1] = hracNaPolicku)
+                {}
                 
             }
         }
