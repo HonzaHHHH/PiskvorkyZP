@@ -46,32 +46,36 @@ int kontrolaZdaNekdoVyhral()
             {
                 short hracNaPolicku = MainHerniPlocha[oo][pp];
                 // jsem debil a ty smery v komentech mam obracene, ale fungovat to bude
-                if (MainHerniPlocha[oo][pp + 1] = hracNaPolicku) // nahoru
+                if (MainHerniPlocha[oo][pp + 1] == hracNaPolicku) // nahoru
                 {
+                    int pocetHracovychPolicekVRade = 0;
                     for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                     {
                         if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
                             break;
-                        int pocetHracovychPolicekVRade = 0;
                         if (MainHerniPlocha[oo][pp + aaa] == hracNaPolicku)
                             pocetHracovychPolicekVRade++;
                     }
+                    if (pocetHracovychPolicekVRade > 4)
+                    {
+                        printf("Vyhral nekdo");
+                    }
                 }
-                if (MainHerniPlocha[oo + 1][pp + 1] = hracNaPolicku) // sikmo nahoru doprava
+                if (MainHerniPlocha[oo + 1][pp + 1] == hracNaPolicku) // sikmo nahoru doprava
                 {
 
                 }
-                if (MainHerniPlocha[oo + 1][pp] = hracNaPolicku) // doprava
+                if (MainHerniPlocha[oo + 1][pp] == hracNaPolicku) // doprava
                 {}
-                if (MainHerniPlocha[oo + 1][pp - 1] = hracNaPolicku) // sikmo dolu doprava
+                if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku) // sikmo dolu doprava
                 {}
-                if (MainHerniPlocha[oo][pp - 1] = hracNaPolicku) // dolu
+                if (MainHerniPlocha[oo][pp - 1] == hracNaPolicku) // dolu
                 {}
-                if (MainHerniPlocha[oo - 1][pp - 1] = hracNaPolicku) // sikmo dolu doleva
+                if (MainHerniPlocha[oo - 1][pp - 1] == hracNaPolicku) // sikmo dolu doleva
                 {}
-                if (MainHerniPlocha[oo - 1][pp] = hracNaPolicku) // doleva
+                if (MainHerniPlocha[oo - 1][pp] == hracNaPolicku) // doleva
                 {}
-                if (MainHerniPlocha[oo - 1][pp + 1] = hracNaPolicku) // sikmo nahoru doleva
+                if (MainHerniPlocha[oo - 1][pp + 1] == hracNaPolicku) // sikmo nahoru doleva
                 {}
             }
         }
@@ -145,6 +149,7 @@ void multiplayerStart(void)
             printf("pekne blby");
             break;
         }
+        kontrolaZdaNekdoVyhral();
     }
     printf("ukrutne smutny konec"); // ladici prompt nemelo by nastat
 }
