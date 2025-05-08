@@ -10,6 +10,7 @@ char vodorovnaHranice = 45;
 char svislaHranice = 124;
 short **MainHerniPlocha;
 void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu);
+void multiplayerStart(void);
 
 void inicializaceHernihoPole()
 {
