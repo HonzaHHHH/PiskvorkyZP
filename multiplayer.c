@@ -107,7 +107,7 @@ int kontrolaZdaNekdoVyhral()
                     int pocetHracovychPolicekVRade = 0;
                     for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                     {
-                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy() || oo + aaa > getSirkaHerniPlochy())
                             break;
                         if (MainHerniPlocha[oo + aaa][pp + aaa] == hracNaPolicku)
                             pocetHracovychPolicekVRade++;
@@ -134,7 +134,7 @@ int kontrolaZdaNekdoVyhral()
                     int pocetHracovychPolicekVRade = 0;
                     for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                     {
-                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                        if (oo < 0 || pp < 0 || oo + aaa > getSirkaHerniPlochy())
                             break;
                         if (MainHerniPlocha[oo + aaa][pp] == hracNaPolicku)
                             pocetHracovychPolicekVRade++;
@@ -161,7 +161,7 @@ int kontrolaZdaNekdoVyhral()
                     int pocetHracovychPolicekVRade = 0;
                     for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                     {
-                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                        if (oo < 0 || pp < 0 || oo + aaa > getSirkaHerniPlochy())
                             break;
                         if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku)
                             pocetHracovychPolicekVRade++;
@@ -188,7 +188,7 @@ int kontrolaZdaNekdoVyhral()
                     int pocetHracovychPolicekVRade = 0;
                     for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                     {
-                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                        if (oo < 0 || pp < 0)
                             break;
                         if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
                             pocetHracovychPolicekVRade++;
@@ -215,7 +215,7 @@ int kontrolaZdaNekdoVyhral()
                     int pocetHracovychPolicekVRade = 0;
                     for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                     {
-                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                        if (oo < 0 || pp < 0)
                             break;
                         if (MainHerniPlocha[oo - aaa][pp - aaa] == hracNaPolicku)
                             pocetHracovychPolicekVRade++;
@@ -242,7 +242,7 @@ int kontrolaZdaNekdoVyhral()
                     int pocetHracovychPolicekVRade = 0;
                     for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                     {
-                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                        if (oo < 0 || pp < 0)
                             break;
                         if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
                             pocetHracovychPolicekVRade++;
