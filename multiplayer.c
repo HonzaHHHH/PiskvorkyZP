@@ -37,7 +37,7 @@ void likvidaceHernihoPole()
     free(MainHerniPlocha);
 }
 
-void skoroKonecMultiplayeru(int vyherce)
+int skoroKonecMultiplayeru(int vyherce)
 {
     likvidaceHernihoPole();
     sleep(2);
@@ -61,7 +61,7 @@ void skoroKonecMultiplayeru(int vyherce)
     }
     if (rozhodnutiNaPokracovani == 'h' || rozhodnutiNaPokracovani == 'H')
         multiplayerStart();
-    return;
+    return 1;
 }
 
 int kontrolaZdaNekdoVyhral()
@@ -90,13 +90,11 @@ int kontrolaZdaNekdoVyhral()
                         poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                         if (hracNaPolicku == 1)
                         {
-                            printf("Vyhrál %s", getUserName());
-                            skoroKonecMultiplayeru(1);
+                            return skoroKonecMultiplayeru(1);
                         }
                         else if (hracNaPolicku == 2)
                         {
-                            printf("Vyhrál %s", getOponentName());
-                            skoroKonecMultiplayeru(2);
+                            return skoroKonecMultiplayeru(2);
                         }
                         else
                         {
@@ -128,6 +126,7 @@ int kontrolaZdaNekdoVyhral()
             }
         }
     }
+    return 0;
 }
 
 void multiplayerStart(void)
@@ -197,7 +196,10 @@ void multiplayerStart(void)
             printf("pekne blby");
             break;
         }
-        kontrolaZdaNekdoVyhral();
+        if (kontrolaZdaNekdoVyhral() == 1)
+        {
+            return;
+        }
     }
     printf("ukrutne smutny konec"); // ladici prompt nemelo by nastat
 }
