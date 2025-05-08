@@ -2,6 +2,7 @@
 #include <stdlib.h>
 // #include <unistd.h> nevim co na to bude rikat win tak zatim nechavam zakomentovany
 #include <string.h>
+#include <unistd.h>
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "ovladani.h"
@@ -35,6 +36,33 @@ void likvidaceHernihoPole()
     free(MainHerniPlocha);
 }
 
+void skoroKonecMultiplayeru(int vyherce)
+{
+    likvidaceHernihoPole();
+    sleep(2);
+    clearScreen();
+    printf("Tuto hru vyhrál ");
+    switch (vyherce)
+    {
+    case 1:
+        printf("%s", getUserName());
+        break;
+    case 2:
+        printf("%s", getOponentName());
+    }
+    printf("\nChcete hrát znovu (klávesa H) nebo se vrátit do hlavní nabídky (klávesa Z)?\n");
+    char rozhodnutiNaPokracovani;
+    while (1)
+    {
+        rozhodnutiNaPokracovani = getCharNow();
+        if (rozhodnutiNaPokracovani == 'z' || rozhodnutiNaPokracovani == 'Z' || rozhodnutiNaPokracovani == 'h' || rozhodnutiNaPokracovani == 'H')
+            break;
+    }
+    if (rozhodnutiNaPokracovani == 'h' || rozhodnutiNaPokracovani == 'H')
+        multiplayerStart();
+    return;
+}
+
 int kontrolaZdaNekdoVyhral()
 {
     for (int oo = 0; oo < getSirkaHerniPlochy(); oo++)
@@ -58,25 +86,44 @@ int kontrolaZdaNekdoVyhral()
                     }
                     if (pocetHracovychPolicekVRade > 4)
                     {
-                        printf("Vyhral nekdo");
+                        poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+                        if (hracNaPolicku == 1)
+                        {
+                            printf("Vyhrál %s", getUserName());
+                            skoroKonecMultiplayeru(1);
+                        }
+                        else if (hracNaPolicku == 2)
+                        {
+                            printf("Vyhrál %s", getOponentName());
+                            skoroKonecMultiplayeru(2);
+                        }
+                        else
+                        {
+                            printf("Chyba");
+                        }
                     }
                 }
                 if (MainHerniPlocha[oo + 1][pp + 1] == hracNaPolicku) // sikmo nahoru doprava
                 {
-
                 }
                 if (MainHerniPlocha[oo + 1][pp] == hracNaPolicku) // doprava
-                {}
+                {
+                }
                 if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku) // sikmo dolu doprava
-                {}
+                {
+                }
                 if (MainHerniPlocha[oo][pp - 1] == hracNaPolicku) // dolu
-                {}
+                {
+                }
                 if (MainHerniPlocha[oo - 1][pp - 1] == hracNaPolicku) // sikmo dolu doleva
-                {}
+                {
+                }
                 if (MainHerniPlocha[oo - 1][pp] == hracNaPolicku) // doleva
-                {}
+                {
+                }
                 if (MainHerniPlocha[oo - 1][pp + 1] == hracNaPolicku) // sikmo nahoru doleva
-                {}
+                {
+                }
             }
         }
     }
