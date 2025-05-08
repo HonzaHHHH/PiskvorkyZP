@@ -262,7 +262,7 @@ void settingsInterface(void)
                 printf("Použití:\ntisk\nBez argumentů - vypíše všechny možnosti nastavení\n");
             }
             else
-                printf("Jméno uživatele: %s\nJméno bota: %s\nJméno protihráče: %s\nŠířka a výška herního pole: %i x %i\n", jmenoUzivatele, jmenoBota, jmenoProtihrace, sirkaHerniPlochy, vyskaHerniPlochy);
+                printf("Jméno uživatele: %s\nJméno bota: %s\nJméno protihráče: %s\nŠířka a výška herního pole: %i x %i\nMinimum znaků, které musí být za sebou, aby nějaký hráč vyhrál: %i\n", jmenoUzivatele, jmenoBota, jmenoProtihrace, sirkaHerniPlochy, vyskaHerniPlochy, minimumZnakuZaSebou);
         }
         else if (strcmp(prikaz, "mmzs") == 0)
         {
