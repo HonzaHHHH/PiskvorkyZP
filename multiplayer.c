@@ -104,24 +104,192 @@ int kontrolaZdaNekdoVyhral()
                 }
                 if (MainHerniPlocha[oo + 1][pp + 1] == hracNaPolicku) // sikmo nahoru doprava
                 {
+                    int pocetHracovychPolicekVRade = 0;
+                    for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
+                    {
+                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            break;
+                        if (MainHerniPlocha[oo + aaa][pp + aaa] == hracNaPolicku)
+                            pocetHracovychPolicekVRade++;
+                    }
+                    if (pocetHracovychPolicekVRade > 4)
+                    {
+                        poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+                        if (hracNaPolicku == 1)
+                        {
+                            return skoroKonecMultiplayeru(1);
+                        }
+                        else if (hracNaPolicku == 2)
+                        {
+                            return skoroKonecMultiplayeru(2);
+                        }
+                        else
+                        {
+                            printf("Chyba");
+                        }
+                    }
                 }
                 if (MainHerniPlocha[oo + 1][pp] == hracNaPolicku) // doprava
                 {
+                    int pocetHracovychPolicekVRade = 0;
+                    for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
+                    {
+                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            break;
+                        if (MainHerniPlocha[oo + aaa][pp] == hracNaPolicku)
+                            pocetHracovychPolicekVRade++;
+                    }
+                    if (pocetHracovychPolicekVRade > 4)
+                    {
+                        poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+                        if (hracNaPolicku == 1)
+                        {
+                            return skoroKonecMultiplayeru(1);
+                        }
+                        else if (hracNaPolicku == 2)
+                        {
+                            return skoroKonecMultiplayeru(2);
+                        }
+                        else
+                        {
+                            printf("Chyba");
+                        }
+                    }
                 }
                 if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku) // sikmo dolu doprava
                 {
+                    int pocetHracovychPolicekVRade = 0;
+                    for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
+                    {
+                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            break;
+                        if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku)
+                            pocetHracovychPolicekVRade++;
+                    }
+                    if (pocetHracovychPolicekVRade > 4)
+                    {
+                        poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+                        if (hracNaPolicku == 1)
+                        {
+                            return skoroKonecMultiplayeru(1);
+                        }
+                        else if (hracNaPolicku == 2)
+                        {
+                            return skoroKonecMultiplayeru(2);
+                        }
+                        else
+                        {
+                            printf("Chyba");
+                        }
+                    }
                 }
                 if (MainHerniPlocha[oo][pp - 1] == hracNaPolicku) // dolu
                 {
+                    int pocetHracovychPolicekVRade = 0;
+                    for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
+                    {
+                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            break;
+                        if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
+                            pocetHracovychPolicekVRade++;
+                    }
+                    if (pocetHracovychPolicekVRade > 4)
+                    {
+                        poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+                        if (hracNaPolicku == 1)
+                        {
+                            return skoroKonecMultiplayeru(1);
+                        }
+                        else if (hracNaPolicku == 2)
+                        {
+                            return skoroKonecMultiplayeru(2);
+                        }
+                        else
+                        {
+                            printf("Chyba");
+                        }
+                    }
                 }
                 if (MainHerniPlocha[oo - 1][pp - 1] == hracNaPolicku) // sikmo dolu doleva
                 {
+                    int pocetHracovychPolicekVRade = 0;
+                    for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
+                    {
+                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            break;
+                        if (MainHerniPlocha[oo - aaa][pp - aaa] == hracNaPolicku)
+                            pocetHracovychPolicekVRade++;
+                    }
+                    if (pocetHracovychPolicekVRade > 4)
+                    {
+                        poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+                        if (hracNaPolicku == 1)
+                        {
+                            return skoroKonecMultiplayeru(1);
+                        }
+                        else if (hracNaPolicku == 2)
+                        {
+                            return skoroKonecMultiplayeru(2);
+                        }
+                        else
+                        {
+                            printf("Chyba");
+                        }
+                    }
                 }
                 if (MainHerniPlocha[oo - 1][pp] == hracNaPolicku) // doleva
                 {
+                    int pocetHracovychPolicekVRade = 0;
+                    for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
+                    {
+                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            break;
+                        if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
+                            pocetHracovychPolicekVRade++;
+                    }
+                    if (pocetHracovychPolicekVRade > 4)
+                    {
+                        poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+                        if (hracNaPolicku == 1)
+                        {
+                            return skoroKonecMultiplayeru(1);
+                        }
+                        else if (hracNaPolicku == 2)
+                        {
+                            return skoroKonecMultiplayeru(2);
+                        }
+                        else
+                        {
+                            printf("Chyba");
+                        }
+                    }
                 }
                 if (MainHerniPlocha[oo - 1][pp + 1] == hracNaPolicku) // sikmo nahoru doleva
                 {
+                    int pocetHracovychPolicekVRade = 0;
+                    for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
+                    {
+                        if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            break;
+                        if (MainHerniPlocha[oo - aaa][pp - aaa] == hracNaPolicku)
+                            pocetHracovychPolicekVRade++;
+                    }
+                    if (pocetHracovychPolicekVRade > 4)
+                    {
+                        poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+                        if (hracNaPolicku == 1)
+                        {
+                            return skoroKonecMultiplayeru(1);
+                        }
+                        else if (hracNaPolicku == 2)
+                        {
+                            return skoroKonecMultiplayeru(2);
+                        }
+                        else
+                        {
+                            printf("Chyba");
+                        }
+                    }
                 }
             }
         }
@@ -144,7 +312,6 @@ void multiplayerStart(void)
     short hrac = 1; // jedna nebo dve
     while (1)
     {
-        nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlocha);
         switch (pohybOdHrace(hrac)) // pohybovani hrace
         {
         case 1:
@@ -193,9 +360,10 @@ void multiplayerStart(void)
             return;
         }
         default:
-            printf("pekne blby");
+            printf("pekne blby"); // ladici prompt nemelo by nastat
             break;
         }
+        nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlocha);
         if (kontrolaZdaNekdoVyhral() == 1)
         {
             return;
