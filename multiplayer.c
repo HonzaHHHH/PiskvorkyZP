@@ -87,7 +87,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo][pp + aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade > getMinimalsCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -117,7 +117,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo + aaa][pp + aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade > getMinimalsCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -147,7 +147,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo + aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade > getMinimalsCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -177,7 +177,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade > getMinimalsCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -207,7 +207,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade > getMinimalsCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -267,7 +267,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade > getMinimalsCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -294,10 +294,10 @@ int kontrolaZdaNekdoVyhral()
                         {
                             if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
                                 break;
-                            if (MainHerniPlocha[oo - aaa][pp - aaa] == hracNaPolicku)
+                            if (MainHerniPlocha[oo - aaa][pp + aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade > getMinimalsCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
