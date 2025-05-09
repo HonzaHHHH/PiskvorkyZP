@@ -174,7 +174,7 @@ int kontrolaZdaNekdoVyhral()
                         {
                             if (oo < 0 || pp < 0 || oo + aaa > getSirkaHerniPlochy())
                                 break;
-                            if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku)
+                            if (MainHerniPlocha[oo + aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
