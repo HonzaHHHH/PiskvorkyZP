@@ -427,7 +427,7 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
     fflush(stdout);
     for (int aa = 0; aa < getSirkaHerniPlochy(); aa++) // projede cele pole a pote vypise x nebo o
     {
-        for (int bb = 0; bb < getVyskaHerniPlochy(); bb++)
+        for (int bb = 0; bb < getVyskaHerniPlochy() + 1; bb++)
         {
             if (souradniceHracu[aa][bb] != 0)
             {
