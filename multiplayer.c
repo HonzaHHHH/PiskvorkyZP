@@ -87,7 +87,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo][pp + aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -105,7 +105,7 @@ int kontrolaZdaNekdoVyhral()
                         }
                     }
                 }
-                if (pp + 1 < getVyskaHerniPlochy() && oo + 1 < getSirkaHerniPlochy())
+                if (pp + 1 < getVyskaHerniPlochy() && oo + 2 < getSirkaHerniPlochy())
                 {
                     if (MainHerniPlocha[oo + 1][pp + 1] == hracNaPolicku) // sikmo nahoru doprava
                     {
@@ -117,7 +117,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo + aaa][pp + aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -135,7 +135,7 @@ int kontrolaZdaNekdoVyhral()
                         }
                     }
                 }
-                if (oo + 1 < getSirkaHerniPlochy())
+                if (oo + 2 < getSirkaHerniPlochy())
                 {
                     if (MainHerniPlocha[oo + 1][pp] == hracNaPolicku) // doprava
                     {
@@ -147,7 +147,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo + aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -165,7 +165,7 @@ int kontrolaZdaNekdoVyhral()
                         }
                     }
                 }
-                if (oo + 1 < getSirkaHerniPlochy() && pp - 1 > -1)
+                if (oo + 2 < getSirkaHerniPlochy() && pp - 1 > -1)
                 {
                     if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku) // sikmo dolu doprava
                     {
@@ -174,10 +174,10 @@ int kontrolaZdaNekdoVyhral()
                         {
                             if (oo < 0 || pp < 0 || oo + aaa > getSirkaHerniPlochy())
                                 break;
-                            if (MainHerniPlocha[oo + aaa][pp - aaa] == hracNaPolicku)
+                            if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -207,7 +207,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -237,7 +237,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo - aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -267,7 +267,7 @@ int kontrolaZdaNekdoVyhral()
                             if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -294,10 +294,10 @@ int kontrolaZdaNekdoVyhral()
                         {
                             if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
                                 break;
-                            if (MainHerniPlocha[oo - aaa][pp + aaa] == hracNaPolicku)
+                            if (MainHerniPlocha[oo - aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
-                        if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
+                        if (pocetHracovychPolicekVRade > getMinimalCharsInRow())
                         {
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
@@ -427,7 +427,7 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
     fflush(stdout);
     for (int aa = 0; aa < getSirkaHerniPlochy(); aa++) // projede cele pole a pote vypise x nebo o
     {
-        for (int bb = 0; bb < getVyskaHerniPlochy() + 1; bb++)
+        for (int bb = 0; bb <= getVyskaHerniPlochy(); bb++)
         {
             if (souradniceHracu[aa][bb] != 0)
             {
