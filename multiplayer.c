@@ -230,7 +230,7 @@ int kontrolaZdaNekdoVyhral()
                     if (MainHerniPlocha[oo - 1][pp - 1] == hracNaPolicku) // sikmo dolu doleva
                     {
                         int pocetHracovychPolicekVRade = 0;
-                        for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++) // CHHYYBYBYJBJFDASJLFJLALJFASLKDJFASKDFJLKASDFLASJDFKLASJ
+                        for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
                             if (oo < 0 || pp < 0)
                                 break;
