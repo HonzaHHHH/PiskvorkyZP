@@ -232,7 +232,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0)
+                            if (oo - aaa < 0 || pp - aaa < 0)
                                 break;
                             if (MainHerniPlocha[oo - aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
