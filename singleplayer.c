@@ -1,6 +1,6 @@
 /*
 Tento kód vchází z multiplayeru -> bude se muset pořádně předělat
-*/
+
 
 
 #include <stdio.h>
@@ -453,4 +453,4 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
     poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 3);
     printf("Piskvorky - singleplayer\n%s vs. %s", getUserName(), getBotName()); // vypise kdo vlastne hraje
     poziceKurzoru(poziceKurzoruSouradnice[0] * 2, poziceKurzoruSouradnice[1] * 2); // nastavi kruzor tak aby ukazoval aktualne zvolene policko
-}
+}*/
