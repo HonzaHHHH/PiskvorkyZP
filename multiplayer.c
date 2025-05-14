@@ -8,22 +8,22 @@
 #include "ovladani.h"
 char vodorovnaHranice = 45;
 char svislaHranice = 124;
-short **MainHerniPlocha;
+short **MainHerniPlochaMP;
 void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu);
 void multiplayerStart(void);
 
 void inicializaceHernihoPole()
 {
-    MainHerniPlocha = malloc(getSirkaHerniPlochy() * sizeof(short *));
+    MainHerniPlochaMP = malloc(getSirkaHerniPlochy() * sizeof(short *));
     for (int xx = 0; xx <= getSirkaHerniPlochy(); xx++)
     {
-        MainHerniPlocha[xx] = calloc(getVyskaHerniPlochy(), sizeof(short));
+        MainHerniPlochaMP[xx] = calloc(getVyskaHerniPlochy(), sizeof(short));
     }
     for (int qq = 0; qq < getSirkaHerniPlochy(); qq++)
     {
         for (int ww = 0; ww < getVyskaHerniPlochy(); ww++)
         {
-            MainHerniPlocha[qq][ww] = 0;
+            MainHerniPlochaMP[qq][ww] = 0;
         }
     }
 }
@@ -32,9 +32,9 @@ void likvidaceHernihoPole()
 {
     for (int fff = 0; fff < getSirkaHerniPlochy(); fff++)
     {
-        free(MainHerniPlocha[fff]);
+        free(MainHerniPlochaMP[fff]);
     }
-    free(MainHerniPlocha);
+    free(MainHerniPlochaMP);
 }
 
 int skoroKonecMultiplayeru(int vyherce)
@@ -71,20 +71,20 @@ int kontrolaZdaNekdoVyhral()
         for (int pp = 0; pp < getVyskaHerniPlochy(); pp++)
         {
             // pro kazde policko na poli zjsitim jestli tam je nebo neni hrac
-            if (MainHerniPlocha[oo][pp] != 0)
+            if (MainHerniPlochaMP[oo][pp] != 0)
             {
-                short hracNaPolicku = MainHerniPlocha[oo][pp];
+                short hracNaPolicku = MainHerniPlochaMP[oo][pp];
                 // jsem debil a ty smery v komentech mam obracene, ale fungovat to bude
                 if (pp + 1 < getVyskaHerniPlochy())
                 {
-                    if (MainHerniPlocha[oo][pp + 1] == hracNaPolicku) // nahoru
+                    if (MainHerniPlochaMP[oo][pp + 1] == hracNaPolicku) // nahoru
                     {
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
                             if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
                                 break;
-                            if (MainHerniPlocha[oo][pp + aaa] == hracNaPolicku)
+                            if (MainHerniPlochaMP[oo][pp + aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
@@ -107,14 +107,14 @@ int kontrolaZdaNekdoVyhral()
                 }
                 if (pp + 1 < getVyskaHerniPlochy() && oo + 1 < getSirkaHerniPlochy())
                 {
-                    if (MainHerniPlocha[oo + 1][pp + 1] == hracNaPolicku) // sikmo nahoru doprava
+                    if (MainHerniPlochaMP[oo + 1][pp + 1] == hracNaPolicku) // sikmo nahoru doprava
                     {
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
                             if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy() || oo + aaa > getSirkaHerniPlochy())
                                 break;
-                            if (MainHerniPlocha[oo + aaa][pp + aaa] == hracNaPolicku)
+                            if (MainHerniPlochaMP[oo + aaa][pp + aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
@@ -137,14 +137,14 @@ int kontrolaZdaNekdoVyhral()
                 }
                 if (oo + 1 < getSirkaHerniPlochy())
                 {
-                    if (MainHerniPlocha[oo + 1][pp] == hracNaPolicku) // doprava
+                    if (MainHerniPlochaMP[oo + 1][pp] == hracNaPolicku) // doprava
                     {
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
                             if (oo < 0 || pp < 0 || oo + aaa > getSirkaHerniPlochy())
                                 break;
-                            if (MainHerniPlocha[oo + aaa][pp] == hracNaPolicku)
+                            if (MainHerniPlochaMP[oo + aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
@@ -167,14 +167,14 @@ int kontrolaZdaNekdoVyhral()
                 }
                 if (oo + 1 < getSirkaHerniPlochy() && pp - 1 > -1)
                 {
-                    if (MainHerniPlocha[oo + 1][pp - 1] == hracNaPolicku) // sikmo dolu doprava
+                    if (MainHerniPlochaMP[oo + 1][pp - 1] == hracNaPolicku) // sikmo dolu doprava
                     {
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
                             if (oo < 0 || pp < 0 || oo + aaa > getSirkaHerniPlochy())
                                 break;
-                            if (MainHerniPlocha[oo + aaa][pp - aaa] == hracNaPolicku)
+                            if (MainHerniPlochaMP[oo + aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
@@ -197,14 +197,14 @@ int kontrolaZdaNekdoVyhral()
                 }
                 if (pp - 1 > -1)
                 {
-                    if (MainHerniPlocha[oo][pp - 1] == hracNaPolicku) // dolu
+                    if (MainHerniPlochaMP[oo][pp - 1] == hracNaPolicku) // dolu
                     {
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
                             if (oo < 0 || pp < 0)
                                 break;
-                            if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
+                            if (MainHerniPlochaMP[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
@@ -227,14 +227,14 @@ int kontrolaZdaNekdoVyhral()
                 }
                 if (oo - 1 > -1 && pp - 1 > -1)
                 {
-                    if (MainHerniPlocha[oo - 1][pp - 1] == hracNaPolicku) // sikmo dolu doleva
+                    if (MainHerniPlochaMP[oo - 1][pp - 1] == hracNaPolicku) // sikmo dolu doleva
                     {
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
                             if (oo - aaa < 0 || pp - aaa < 0)
                                 break;
-                            if (MainHerniPlocha[oo - aaa][pp - aaa] == hracNaPolicku)
+                            if (MainHerniPlochaMP[oo - aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
@@ -257,14 +257,14 @@ int kontrolaZdaNekdoVyhral()
                 }
                 if (oo - 1 > -1)
                 {
-                    if (MainHerniPlocha[oo - 1][pp] == hracNaPolicku) // doleva
+                    if (MainHerniPlochaMP[oo - 1][pp] == hracNaPolicku) // doleva
                     {
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
                             if (oo < 0 || pp < 0)
                                 break;
-                            if (MainHerniPlocha[oo - aaa][pp] == hracNaPolicku)
+                            if (MainHerniPlochaMP[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
@@ -287,14 +287,14 @@ int kontrolaZdaNekdoVyhral()
                 }
                 if (oo - 1 > -1 && pp + 1 < getVyskaHerniPlochy())
                 {
-                    if (MainHerniPlocha[oo - 1][pp + 1] == hracNaPolicku) // sikmo nahoru doleva
+                    if (MainHerniPlochaMP[oo - 1][pp + 1] == hracNaPolicku) // sikmo nahoru doleva
                     {
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
                             if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
                                 break;
-                            if (MainHerniPlocha[oo - aaa][pp - aaa] == hracNaPolicku)
+                            if (MainHerniPlochaMP[oo - aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
@@ -331,7 +331,7 @@ void multiplayerStart(void)
     if (startovniKlavesa == 'e' || startovniKlavesa == 'E')
         return;
     unsigned int poziceKurzoruSouradnice[] = {getSirkaHerniPlochy() / 2 - 1, getVyskaHerniPlochy() / 2 - 1}; // x y
-    nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlocha);
+    nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlochaMP);
     char moznostiPohybuKurzoru;
     short hrac = 1; // jedna nebo dve
     while (1)
@@ -364,9 +364,9 @@ void multiplayerStart(void)
         }
         case 0:
         {
-            if (MainHerniPlocha[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] == 0)
+            if (MainHerniPlochaMP[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] == 0)
             {
-                MainHerniPlocha[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] = hrac;
+                MainHerniPlochaMP[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] = hrac;
                 if (hrac == 1)
                 {
                     hrac = 2;
@@ -387,7 +387,7 @@ void multiplayerStart(void)
             printf("pekne blby"); // ladici prompt nemelo by nastat
             break;
         }
-        nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlocha);
+        nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlochaMP);
         if (kontrolaZdaNekdoVyhral() == 1)
         {
             return;
