@@ -13,12 +13,17 @@ int vyskaHerniPlochy;
 int minimumZnakuZaSebou;
 
 
-char *getUserFolderForConfigFiles()
+char *getUserFolderForConfigFiles(char soubor[30])
 {
+    
 #ifdef __linux__
-    //char uzivatelovaDomovskaSlozka[] = getenv("HOME");
+    #include<sys/stat.h>
+    char cesta[100];
+    sprintf(cesta, "%s/.config/piskvorky/%s", getenv("HOME"), soubor);
+    return cesta;
     
 #endif
+    return soubor;
 }
 
 int getMinimalCharsInRow(void)
