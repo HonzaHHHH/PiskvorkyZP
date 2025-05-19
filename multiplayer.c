@@ -172,7 +172,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0 || oo + aaa >= getSirkaHerniPlochy())
+                            if (oo < 0 || pp - aaa < 0 || oo + aaa >= getSirkaHerniPlochy())
                                 break;
                             if (MainHerniPlochaMP[oo + aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -202,7 +202,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0)
+                            if (oo < 0 || pp - aaa < 0)
                                 break;
                             if (MainHerniPlochaMP[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -262,7 +262,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0)
+                            if (oo - aaa < 0 || pp < 0)
                                 break;
                             if (MainHerniPlochaMP[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -292,7 +292,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0 || pp + aaa >= getVyskaHerniPlochy())
+                            if (oo - aaa < 0 || pp < 0 || pp + aaa >= getVyskaHerniPlochy())
                                 break;
                             if (MainHerniPlochaMP[oo - aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
