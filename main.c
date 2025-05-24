@@ -15,6 +15,7 @@
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "multiplayer.h"
+#include "singleplayer.h"
 // mam trochu radsi, kdyz kod zacina nahore a funkce jsou dole
 void napisPiskvorkyAMenu(int aktualniCisloPolicka); // vypis menu a zabarveneho policka
 int hlavniMenu(void);                               // bude vracet možnost
@@ -88,6 +89,8 @@ int hlavniMenu()
         case '\n':
             switch (moznostHlavnihoMenu)
             {
+            case 1:
+                singleplayerStart();
             case 2:
                 multiplayerStart();
                 break;

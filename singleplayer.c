@@ -1,8 +1,3 @@
-/*
-Tento kód vchází z multiplayeru -> bude se muset pořádně předělat
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
 // #include <unistd.h> nevim co na to bude rikat win tak zatim nechavam zakomentovany
@@ -65,7 +60,7 @@ int skoroKonecSingleplayeru(int vyherce)
             break;
     }
     if (rozhodnutiNaPokracovani == 'h' || rozhodnutiNaPokracovani == 'H')
-        multiplayerStart();
+        singleplayerStart();
     return 1;
 }
 
@@ -87,7 +82,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            if (oo < 0 || pp < 0 || pp + aaa >= getVyskaHerniPlochy())
                                 break;
                             if (MainHerniPlochaSP[oo][pp + aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -97,11 +92,11 @@ int kontrolaZdaNekdoVyhral()
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
                             {
-                                return skoroKonecMultiplayeru(1);
+                                return skoroKonecSingleplayeru(1);
                             }
                             else if (hracNaPolicku == 2)
                             {
-                                return skoroKonecMultiplayeru(2);
+                                return skoroKonecSingleplayeru(2);
                             }
                             else
                             {
@@ -117,7 +112,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy() || oo + aaa > getSirkaHerniPlochy())
+                            if (oo < 0 || pp < 0 || pp + aaa >= getVyskaHerniPlochy() || oo + aaa >= getSirkaHerniPlochy())
                                 break;
                             if (MainHerniPlochaSP[oo + aaa][pp + aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -127,11 +122,11 @@ int kontrolaZdaNekdoVyhral()
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
                             {
-                                return skoroKonecMultiplayeru(1);
+                                return skoroKonecSingleplayeru(1);
                             }
                             else if (hracNaPolicku == 2)
                             {
-                                return skoroKonecMultiplayeru(2);
+                                return skoroKonecSingleplayeru(2);
                             }
                             else
                             {
@@ -147,7 +142,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0 || oo + aaa > getSirkaHerniPlochy())
+                            if (oo < 0 || pp < 0 || oo + aaa >= getSirkaHerniPlochy())
                                 break;
                             if (MainHerniPlochaSP[oo + aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -157,11 +152,11 @@ int kontrolaZdaNekdoVyhral()
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
                             {
-                                return skoroKonecMultiplayeru(1);
+                                return skoroKonecSingleplayeru(1);
                             }
                             else if (hracNaPolicku == 2)
                             {
-                                return skoroKonecMultiplayeru(2);
+                                return skoroKonecSingleplayeru(2);
                             }
                             else
                             {
@@ -177,7 +172,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0 || oo + aaa > getSirkaHerniPlochy())
+                            if (oo < 0 || pp - aaa < 0 || oo + aaa >= getSirkaHerniPlochy())
                                 break;
                             if (MainHerniPlochaSP[oo + aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -187,11 +182,11 @@ int kontrolaZdaNekdoVyhral()
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
                             {
-                                return skoroKonecMultiplayeru(1);
+                                return skoroKonecSingleplayeru(1);
                             }
                             else if (hracNaPolicku == 2)
                             {
-                                return skoroKonecMultiplayeru(2);
+                                return skoroKonecSingleplayeru(2);
                             }
                             else
                             {
@@ -207,7 +202,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0)
+                            if (oo < 0 || pp - aaa < 0)
                                 break;
                             if (MainHerniPlochaSP[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -217,11 +212,11 @@ int kontrolaZdaNekdoVyhral()
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
                             {
-                                return skoroKonecMultiplayeru(1);
+                                return skoroKonecSingleplayeru(1);
                             }
                             else if (hracNaPolicku == 2)
                             {
-                                return skoroKonecMultiplayeru(2);
+                                return skoroKonecSingleplayeru(2);
                             }
                             else
                             {
@@ -237,7 +232,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo - aaa < 0 || pp - aaa < 0)
+                            if (oo - aaa <= 0 || pp - aaa < 0)
                                 break;
                             if (MainHerniPlochaSP[oo - aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -247,11 +242,11 @@ int kontrolaZdaNekdoVyhral()
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
                             {
-                                return skoroKonecMultiplayeru(1);
+                                return skoroKonecSingleplayeru(1);
                             }
                             else if (hracNaPolicku == 2)
                             {
-                                return skoroKonecMultiplayeru(2);
+                                return skoroKonecSingleplayeru(2);
                             }
                             else
                             {
@@ -267,7 +262,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0)
+                            if (oo - aaa <= 0 || pp < 0)
                                 break;
                             if (MainHerniPlochaSP[oo - aaa][pp] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -277,11 +272,11 @@ int kontrolaZdaNekdoVyhral()
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
                             {
-                                return skoroKonecMultiplayeru(1);
+                                return skoroKonecSingleplayeru(1);
                             }
                             else if (hracNaPolicku == 2)
                             {
-                                return skoroKonecMultiplayeru(2);
+                                return skoroKonecSingleplayeru(2);
                             }
                             else
                             {
@@ -297,7 +292,7 @@ int kontrolaZdaNekdoVyhral()
                         int pocetHracovychPolicekVRade = 0;
                         for (int aaa = 0; aaa < getMinimalCharsInRow(); aaa++)
                         {
-                            if (oo < 0 || pp < 0 || pp + aaa > getVyskaHerniPlochy())
+                            if (oo - aaa <= 0 || pp < 0 || pp + aaa >= getVyskaHerniPlochy())
                                 break;
                             if (MainHerniPlochaSP[oo - aaa][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
@@ -307,11 +302,11 @@ int kontrolaZdaNekdoVyhral()
                             poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
                             if (hracNaPolicku == 1)
                             {
-                                return skoroKonecMultiplayeru(1);
+                                return skoroKonecSingleplayeru(1);
                             }
                             else if (hracNaPolicku == 2)
                             {
-                                return skoroKonecMultiplayeru(2);
+                                return skoroKonecSingleplayeru(2);
                             }
                             else
                             {
@@ -330,7 +325,7 @@ void singleplayerStart(void)
 {
     inicializaceHernihoPole();
     clearScreen();
-    printf("Singleplayer\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nHrajte pomocí kláves WASD a enter\nBěhem hry můžete sami odejít zmáčknutím klávesy Z\n");
+    printf("MULTIPLAYER\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nPrvní hráč bude používat klávesy WASD, druhý IJKL a oba dva samozřejmě enter\nBěhem hry můžete sami odejít zmáčknutím klávesy Z\n");
     char startovniKlavesa = getCharNow();
     clearScreen();
     if (startovniKlavesa == 'e' || startovniKlavesa == 'E')
@@ -372,7 +367,7 @@ void singleplayerStart(void)
             if (MainHerniPlochaSP[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] == 0)
             {
                 MainHerniPlochaSP[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] = hrac;
-                if (hrac == 1)
+                if (hrac == 1) // SEM UMISTIT BOTA
                 {
                     hrac = 2;
                 }
@@ -453,4 +448,4 @@ void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
     poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 3);
     printf("Piskvorky - singleplayer\n%s vs. %s", getUserName(), getBotName()); // vypise kdo vlastne hraje
     poziceKurzoru(poziceKurzoruSouradnice[0] * 2, poziceKurzoruSouradnice[1] * 2); // nastavi kruzor tak aby ukazoval aktualne zvolene policko
-}*/
+}
