@@ -79,5 +79,7 @@ int pohybOdHrace(int povoleneKlavesy)
         }
         break;
     }
+    case 3: // sem dat bota
+    break;
     }
 }
