@@ -6,8 +6,7 @@
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "ovladani.h"
-char vodorovnaHranice = 45;
-char svislaHranice = 124;
+
 short **MainHerniPlochaMP;
 void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu);
 void multiplayerStart(void);

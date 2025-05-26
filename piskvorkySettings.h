@@ -14,4 +14,6 @@ int getVyskaHerniPlochy(void);
 
 int getMinimalCharsInRow(void);
 
+int getObtiznostBota(void);
+
 #endif

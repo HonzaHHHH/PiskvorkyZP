@@ -3,14 +3,19 @@
 // #include <unistd.h> nevim co na to bude rikat win tak zatim nechavam zakomentovany
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "ovladani.h"
-char vodorovnaHranice = 45;
-char svislaHranice = 124;
+
 short **MainHerniPlochaSP;
-void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu);
+void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu);
 void singleplayerStart(void);
+
+
+int getRandomInt(int min, int max) {
+    return rand() % max + min;
+}
 
 void inicializaceHernihoPole()
 {
@@ -35,6 +40,29 @@ void likvidaceHernihoPole()
         free(MainHerniPlochaSP[fff]);
     }
     free(MainHerniPlochaSP);
+}
+
+botuvTah(unsigned int* aktualniTah)
+{
+    switch (getObtiznostBota())
+    {
+    case 1:
+        int poleKurzoruBota[2];
+        while (1)
+        {
+            poleKurzoruBota[0] = getRandomInt(0, getSirkaHerniPlochy());
+            poleKurzoruBota[1] = getRandomInt(0, getVyskaHerniPlochy());
+            if (MainHerniPlochaSP[poleKurzoruBota[0]][poleKurzoruBota[1]] == 0)
+            {
+                continue;
+            }
+        }
+        
+        break;
+    
+    default:
+        break;
+    }
 }
 
 int skoroKonecSingleplayeru(int vyherce)
@@ -64,7 +92,7 @@ int skoroKonecSingleplayeru(int vyherce)
     return 1;
 }
 
-int kontrolaZdaNekdoVyhral()
+int KontrolaZdaNekdoVyhralSP()
 {
     for (int oo = 0; oo < getSirkaHerniPlochy(); oo++)
     {
@@ -331,7 +359,7 @@ void singleplayerStart(void)
     if (startovniKlavesa == 'e' || startovniKlavesa == 'E')
         return;
     unsigned int poziceKurzoruSouradnice[] = {getSirkaHerniPlochy() / 2 - 1, getVyskaHerniPlochy() / 2 - 1}; // x y
-    nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlochaSP);
+    nakreslitHerniPoleSP(poziceKurzoruSouradnice, MainHerniPlochaSP);
     char moznostiPohybuKurzoru;
     short hrac = 1; // jedna nebo dve
     while (1)
@@ -367,14 +395,7 @@ void singleplayerStart(void)
             if (MainHerniPlochaSP[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] == 0)
             {
                 MainHerniPlochaSP[poziceKurzoruSouradnice[0]][poziceKurzoruSouradnice[1]] = hrac;
-                if (hrac == 1) // SEM UMISTIT BOTA
-                {
-                    hrac = 2;
-                }
-                else if (hrac == 2)
-                {
-                    hrac = 1;
-                }
+                botuvTah(poziceKurzoruSouradnice);
             }
             break;
         }
@@ -387,8 +408,8 @@ void singleplayerStart(void)
             printf("pekne blby"); // ladici prompt nemelo by nastat
             break;
         }
-        nakreslitHerniPole(poziceKurzoruSouradnice, MainHerniPlochaSP);
-        if (kontrolaZdaNekdoVyhral() == 1)
+        nakreslitHerniPoleSP(poziceKurzoruSouradnice, MainHerniPlochaSP);
+        if (KontrolaZdaNekdoVyhralSP() == 1)
         {
             return;
         }
@@ -396,7 +417,7 @@ void singleplayerStart(void)
     printf("ukrutne smutny konec"); // ladici prompt nemelo by nastat
 }
 
-void nakreslitHerniPole(int *poziceKurzoruSouradnice, short **souradniceHracu)
+void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu)
 {
     clearScreen(); // vypise herni polochu
     poziceKurzoru(1, 1);

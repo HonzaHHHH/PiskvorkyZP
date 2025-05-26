@@ -32,6 +32,11 @@ int getMinimalCharsInRow(void)
     return minimumZnakuZaSebou;
 }
 
+int getObtiznostBota(void)
+{
+    return 1;
+}
+
 void settingsHelp(void)
 {
     printf("Příkazy:\nexit - vrátí se opět do menu\nquit - ukončí aplikaci\nhelp - zobrazí nápovědu\nhhlp - zobrazí, jak se zde mají používat příkazy\nclsc - vycisti tuto konzoli\ntisk - vypíše všechny uložené informace\nsave - uloží změny\nname - nastaví jména hráčů\nrozm - nastaví rozměry herní plochy\nmmzs - nastavi minimální počet znaků za sebou\n");

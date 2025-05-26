@@ -4,6 +4,9 @@
 #include "piskvorkySettings.h"
 #include "terminalSettings.h"
 
+char vodorovnaHranice = 45;
+char svislaHranice = 124;
+
 int pohybOdHrace(int povoleneKlavesy)
 {
     if (povoleneKlavesy < 1 || povoleneKlavesy > 3)
