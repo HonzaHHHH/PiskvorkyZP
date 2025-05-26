@@ -105,6 +105,9 @@ int hlavniMenu()
         case 13:
             switch (moznostHlavnihoMenu)
             {
+            case 1:
+                singleplayerStart();
+                break;
             case 2:
                 multiplayerStart();
                 break;

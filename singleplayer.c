@@ -50,11 +50,12 @@ botuvTah(unsigned int* aktualniTah)
         int poleKurzoruBota[2];
         while (1)
         {
-            poleKurzoruBota[0] = getRandomInt(0, getSirkaHerniPlochy());
-            poleKurzoruBota[1] = getRandomInt(0, getVyskaHerniPlochy());
+            poleKurzoruBota[0] = getRandomInt(0, getSirkaHerniPlochy() - 1);
+            poleKurzoruBota[1] = getRandomInt(0, getVyskaHerniPlochy() - 1);
             if (MainHerniPlochaSP[poleKurzoruBota[0]][poleKurzoruBota[1]] == 0)
             {
-                continue;
+                MainHerniPlochaSP[poleKurzoruBota[0]][poleKurzoruBota[1]] = 2;
+                break;
             }
         }
         
@@ -77,7 +78,7 @@ int skoroKonecSingleplayeru(int vyherce)
         printf("%s", getUserName());
         break;
     case 2:
-        printf("%s", getOponentName());
+        printf("%s", getBotName());
     }
     printf("\nChcete hrát znovu (klávesa H) nebo se vrátit do hlavní nabídky (klávesa Z)?\n");
     char rozhodnutiNaPokracovani;
@@ -353,7 +354,7 @@ void singleplayerStart(void)
 {
     InicializaceHernihoPoleSP();
     clearScreen();
-    printf("MULTIPLAYER\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nPrvní hráč bude používat klávesy WASD, druhý IJKL a oba dva samozřejmě enter\nBěhem hry můžete sami odejít zmáčknutím klávesy Z\n");
+    printf("SINGLEPLAYER\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nPoužívejte klávesy WASD a enter\nBěhem hry můžete sami odejít zmáčknutím klávesy Z\n");
     char startovniKlavesa = getCharNow();
     clearScreen();
     if (startovniKlavesa == 'e' || startovniKlavesa == 'E')
