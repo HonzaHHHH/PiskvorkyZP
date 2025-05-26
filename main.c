@@ -91,6 +91,7 @@ int hlavniMenu()
             {
             case 1:
                 singleplayerStart();
+                break;
             case 2:
                 multiplayerStart();
                 break;
