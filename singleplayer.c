@@ -17,7 +17,7 @@ int getRandomInt(int min, int max) {
     return rand() % max + min;
 }
 
-void inicializaceHernihoPole()
+void InicializaceHernihoPoleSP()
 {
     MainHerniPlochaSP = malloc(getSirkaHerniPlochy() * sizeof(short *));
     for (int xx = 0; xx <= getSirkaHerniPlochy(); xx++)
@@ -33,7 +33,7 @@ void inicializaceHernihoPole()
     }
 }
 
-void likvidaceHernihoPole()
+void likvidaceHernihoPoleSP()
 {
     for (int fff = 0; fff < getSirkaHerniPlochy(); fff++)
     {
@@ -67,7 +67,7 @@ botuvTah(unsigned int* aktualniTah)
 
 int skoroKonecSingleplayeru(int vyherce)
 {
-    likvidaceHernihoPole();
+    likvidaceHernihoPoleSP();
     sleep(2);
     clearScreen();
     printf("Tuto hru vyhrál ");
@@ -351,7 +351,7 @@ int KontrolaZdaNekdoVyhralSP()
 
 void singleplayerStart(void)
 {
-    inicializaceHernihoPole();
+    InicializaceHernihoPoleSP();
     clearScreen();
     printf("MULTIPLAYER\nStiskněte jakoukoliv klávesu pro start, klávesu e pro vrácení se do hlavní nabídky\nPrvní hráč bude používat klávesy WASD, druhý IJKL a oba dva samozřejmě enter\nBěhem hry můžete sami odejít zmáčknutím klávesy Z\n");
     char startovniKlavesa = getCharNow();
@@ -401,7 +401,7 @@ void singleplayerStart(void)
         }
         case -1:
         {
-            likvidaceHernihoPole();
+            likvidaceHernihoPoleSP();
             return;
         }
         default:
