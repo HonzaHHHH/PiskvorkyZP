@@ -11,7 +11,7 @@ char jmenoBota[50];
 int sirkaHerniPlochy;
 int vyskaHerniPlochy;
 int minimumZnakuZaSebou;
-
+int obtiznostBota;
 
 char *getUserFolderForConfigFiles(char soubor[30])
 {
@@ -34,12 +34,12 @@ int getMinimalCharsInRow(void)
 
 int getObtiznostBota(void)
 {
-    return 1;
+    return obtiznostBota;
 }
 
 void settingsHelp(void)
 {
-    printf("Příkazy:\nexit - vrátí se opět do menu\nquit - ukončí aplikaci\nhelp - zobrazí nápovědu\nhhlp - zobrazí, jak se zde mají používat příkazy\nclsc - vycisti tuto konzoli\ntisk - vypíše všechny uložené informace\nsave - uloží změny\nname - nastaví jména hráčů\nrozm - nastaví rozměry herní plochy\nmmzs - nastavi minimální počet znaků za sebou\n");
+    printf("Příkazy:\nexit - vrátí se opět do menu\nquit - ukončí aplikaci\nhelp - zobrazí nápovědu\nhhlp - zobrazí, jak se zde mají používat příkazy\nclsc - vycisti tuto konzoli\ntisk - vypíše všechny uložené informace\nsave - uloží změny\nname - nastaví jména hráčů\nrozm - nastaví rozměry herní plochy\nmmzs - nastavi minimální počet znaků za sebou\nboto - nastaví úroveň bota\n");
 }
 
 void grossHilfe(void)
@@ -76,12 +76,13 @@ int loadSettings()
         FILE *fileUlozeniRozmeru = fopen("settingsNumbers.sett", "r");
         if (fileUlozeniRozmeru == NULL)
             return 12;
-        int check = fscanf(fileUlozeniRozmeru, "%i %i %i", &sirkaHerniPlochy, &vyskaHerniPlochy, &minimumZnakuZaSebou);
-        if (check != 3)
+        int check = fscanf(fileUlozeniRozmeru, "%i %i %i %i", &sirkaHerniPlochy, &vyskaHerniPlochy, &minimumZnakuZaSebou, &obtiznostBota);
+        if (check != 4)
         {
             sirkaHerniPlochy = 10;
             vyskaHerniPlochy = 10;
             minimumZnakuZaSebou = 5;
+            obtiznostBota = 1;
             return 4;
         }
         if (sirkaHerniPlochy < 3)
@@ -95,6 +96,8 @@ int loadSettings()
         sirkaHerniPlochy = 10;
         vyskaHerniPlochy = 10;
         minimumZnakuZaSebou = 5;
+        obtiznostBota = 1;
+
     }
     return 0;
 }
@@ -136,7 +139,7 @@ int saveSettings()
     FILE *fileUlozeniPlochy = fopen("settingsNumbers.sett", "w");
     if (fileUlozeniPlochy == NULL)
         return 11;
-    check = fprintf(fileUlozeniPlochy, "%i %i %i", sirkaHerniPlochy, vyskaHerniPlochy, minimumZnakuZaSebou);
+    check = fprintf(fileUlozeniPlochy, "%i %i %i %i", sirkaHerniPlochy, vyskaHerniPlochy, minimumZnakuZaSebou, obtiznostBota);
     if (check < 0)
     {
         return 9;
@@ -277,14 +280,40 @@ void settingsInterface(void)
         else if (strcmp(prikaz, "mmzs") == 0)
         {
             if (strcmp(argument, "hlp") == 0)
-                printf("Použití:\nmmzs argument\nArgumentem je číslo\nNastaví minimální množství znaků za sebou, který uživatel musí mít, aby vyhrál\n\n");
-            else
+                printf("Použití:\nmmzs set parametr\nParametrem je číslo\nNastaví minimální množství znaků za sebou, který uživatel musí mít, aby vyhrál\n\n");
+            else if (strcmp(argument, "set") == 0)
             {
                 minimumZnakuZaSebou = atoi(parametr);
                 if (minimumZnakuZaSebou < 3)
                 {
                     minimumZnakuZaSebou = 3;
                 }
+            }
+            else
+            {
+                printf("Špatně zadaný příkaz\n");
+            }
+        }
+        else if (strcmp(prikaz, "boto") == 0)
+        {
+            if (strcmp(argument, "hlp"))
+            {
+                printf("Použití:\nboto set argumen\nnastaví obtížnost bota\n");
+            }
+            else if (strcmp(argument, "set") == 0)
+            {
+                if (atoi(parametr) == 1 || atoi(parametr) == 2 || atoi(parametr) == 3)
+                {
+                    obtiznostBota = atoi(parametr);
+                }
+                else
+                {
+                    printf("Špatný parametr\n");
+                }
+            }
+            else
+            {
+                printf("Špatně zadaný příkaz\n");
             }
         }
         else
