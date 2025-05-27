@@ -233,7 +233,7 @@ int KontrolaZdaNekdoVyhralSP()
                         {
                             if (oo < 0 || pp - aaa < 0)
                                 break;
-                            if (MainHerniPlochaSP[oo - aaa][pp] == hracNaPolicku)
+                            if (MainHerniPlochaSP[oo][pp - aaa] == hracNaPolicku)
                                 pocetHracovychPolicekVRade++;
                         }
                         if (pocetHracovychPolicekVRade >= getMinimalCharsInRow())
