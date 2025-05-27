@@ -451,9 +451,20 @@ void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu)
     {
         for (int bb = 0; bb <= getVyskaHerniPlochy(); bb++)
         {
+            fflush(stdout);
+            poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+            printf("%i %i", aa, bb);
             if (souradniceHracu[aa][bb] != 0)
             {
-                poziceKurzoru(aa * 2, bb * 2);
+                
+                if (aa == 0)
+                    poziceKurzoru(2, bb);
+                else if (bb == 0)
+                    poziceKurzoru(aa, 2);
+                else if (aa == 0 && bb == 0)
+                    poziceKurzoru(2, 2);
+                else
+                    poziceKurzoru(aa * 2, bb * 2);
                 switch (souradniceHracu[aa][bb])
                 {
                 case 1:
