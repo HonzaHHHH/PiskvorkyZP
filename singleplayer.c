@@ -14,7 +14,7 @@ void singleplayerStart(void);
 
 
 int getRandomInt(int min, int max) {
-    return rand() % max + min;
+    return rand() % (max - min + 1) + min;  // https://www.geeksforgeeks.org/c-rand-function/  vypada to celkem fajn
 }
 
 void InicializaceHernihoPoleSP()
