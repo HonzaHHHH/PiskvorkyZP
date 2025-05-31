@@ -13,17 +13,18 @@ int vyskaHerniPlochy;
 int minimumZnakuZaSebou;
 int obtiznostBota;
 
-char *getUserFolderForConfigFiles(char soubor[30])
+void getUserFolderForConfigFiles(char *soubor, char *cilovyString)
 {
     
 #ifdef __linux__
     #include<sys/stat.h>
     char cesta[100];
     sprintf(cesta, "%s/.config/piskvorky/%s", getenv("HOME"), soubor);
-    return cesta;
-    
+    sprintf(cilovyString, "%s", cesta);
+    return;
 #endif
-    return soubor;
+    sprintf(cilovyString, "%s", cesta);
+
 }
 
 int getMinimalCharsInRow(void)
@@ -49,9 +50,11 @@ void grossHilfe(void)
 
 int loadSettings()
 {
-    if (access("usernames.sett", F_OK) == 0)
+    char uzivatelskaJmena[100];
+    getUserFolderForConfigFiles("usernames.sett", uzivatelskaJmena);
+    if (access(uzivatelskaJmena, F_OK) == 0)
     {
-        FILE *fileUlozeniJmen = fopen("usernames.sett", "r");
+        FILE *fileUlozeniJmen = fopen(uzivatelskaJmena, "r");
         if (fileUlozeniJmen == NULL)
             return 11;
         int check = fscanf(fileUlozeniJmen, "%49s %49s %49s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
@@ -71,9 +74,11 @@ int loadSettings()
         if (strlen(jmenoBota) < 1)
             strcat(jmenoBota, "DefaultBot");
     }
-    if (access("settingsNumbers.sett", F_OK) == 0)
+    char uzivatelskaCisla[100];
+    getUserFolderForConfigFiles("settingsNumbers.sett", uzivatelskaCisla);
+    if (access(uzivatelskaCisla, F_OK) == 0)
     {
-        FILE *fileUlozeniRozmeru = fopen("settingsNumbers.sett", "r");
+        FILE *fileUlozeniRozmeru = fopen(uzivatelskaCisla, "r");
         if (fileUlozeniRozmeru == NULL)
             return 12;
         int check = fscanf(fileUlozeniRozmeru, "%i %i %i %i", &sirkaHerniPlochy, &vyskaHerniPlochy, &minimumZnakuZaSebou, &obtiznostBota);
@@ -127,7 +132,9 @@ int getVyskaHerniPlochy(void)
 
 int saveSettings()
 {
-    FILE *fileUlozeniJmen = fopen("usernames.sett", "w");
+    char uzivatelskaJmena[100];
+    getUserFolderForConfigFiles("usernames.sett", uzivatelskaJmena);
+    FILE *fileUlozeniJmen = fopen(uzivatelskaJmena, "w");
     if (fileUlozeniJmen == NULL)
         return 10;
     int check = fprintf(fileUlozeniJmen, "%s %s %s", jmenoUzivatele, jmenoProtihrace, jmenoBota);
@@ -136,7 +143,9 @@ int saveSettings()
         return 8;
     }
     fclose(fileUlozeniJmen);
-    FILE *fileUlozeniPlochy = fopen("settingsNumbers.sett", "w");
+    char uzivatelskaCisla[100];
+    getUserFolderForConfigFiles("settingsNumbers.sett", uzivatelskaCisla);
+    FILE *fileUlozeniPlochy = fopen(uzivatelskaCisla, "w");
     if (fileUlozeniPlochy == NULL)
         return 11;
     check = fprintf(fileUlozeniPlochy, "%i %i %i %i", sirkaHerniPlochy, vyskaHerniPlochy, minimumZnakuZaSebou, obtiznostBota);
