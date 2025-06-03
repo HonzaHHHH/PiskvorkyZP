@@ -7,9 +7,9 @@
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "ovladani.h"
-//#ifdef Win32
+// #ifdef Win32
 #include <windows.h>
-//#endif
+// #endif
 
 short **MainHerniPlochaSP;
 void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu);
@@ -38,11 +38,13 @@ void InicializaceHernihoPoleSP()
 
 void likvidaceHernihoPoleSP()
 {
+#ifdef __linux__
     for (int fff = 0; fff < getSirkaHerniPlochy(); fff++)
     {
         free(MainHerniPlochaSP[fff]);
     }
     free(MainHerniPlochaSP);
+#endif
 }
 
 botuvTah(unsigned int *aktualniTah)
@@ -72,7 +74,7 @@ botuvTah(unsigned int *aktualniTah)
 
 int skoroKonecSingleplayeru(int vyherce)
 {
-    
+
     likvidaceHernihoPoleSP();
     clearScreen();
     spanek(2);
