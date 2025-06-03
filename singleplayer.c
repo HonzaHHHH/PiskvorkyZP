@@ -38,7 +38,7 @@ void InicializaceHernihoPoleSP()
 
 void likvidaceHernihoPoleSP()
 {
-    for (int fff = 0; fff < getSirkaHerniPlochy(); fff++)
+    for (int fff = 0; fff <= getSirkaHerniPlochy(); fff++)
     {
         free(MainHerniPlochaSP[fff]);
     }
@@ -72,7 +72,9 @@ botuvTah(unsigned int *aktualniTah)
 
 int skoroKonecSingleplayeru(int vyherce)
 {
+    
     likvidaceHernihoPoleSP();
+    clearScreen();
     spanek(2);
     clearScreen();
     printf("Tuto hru vyhrál ");
