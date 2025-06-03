@@ -15,10 +15,11 @@ int obtiznostBota;
 
 void getUserFolderForConfigFiles(char *soubor, char *cilovyString)
 {
+    char cesta[100];
     
 #ifdef __linux__
     #include<sys/stat.h>
-    char cesta[100];
+    
     sprintf(cesta, "%s/.config/piskvorky/%s", getenv("HOME"), soubor);
     sprintf(cilovyString, "%s", cesta);
     return;

@@ -13,4 +13,5 @@ char getCharNow(void);
 
 void poziceKurzoru(int osax, int osay);
 
+void spanek(int sekundy);
 #endif

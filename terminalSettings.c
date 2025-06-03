@@ -9,37 +9,34 @@ struct termios staryTerminal, NovyTerminal;
 #endif
 void vypnoutKanonickyRezim(void)
 {
-    // Pro vypnutí kanonického režimu
+// Pro vypnutí kanonického režimu
 
-    // vypnutí
-    #ifdef __linux__
+// vypnutí
+#ifdef __linux__
     tcsetattr(STDIN_FILENO, TCSANOW, &NovyTerminal);
-    #endif
+#endif
 }
 
 void zapnoutKanonickyRezim(void)
 {
-    #ifdef __linux__
+#ifdef __linux__
     tcsetattr(STDIN_FILENO, TCSANOW, &staryTerminal);
-    #endif
+#endif
 }
 
 void setupTerminalFunctions(void)
 {
-    #ifdef __linux__
+#ifdef __linux__
     tcgetattr(STDIN_FILENO, &staryTerminal);
     tcgetattr(STDIN_FILENO, &NovyTerminal);
     NovyTerminal.c_lflag &= ~(ICANON | ECHO);
-    #endif
+#endif
 }
-
-
 
 #ifdef _WIN32
 
 #include <conio.h>
 #endif
-
 
 void clearScreen(void)
 {
@@ -66,4 +63,16 @@ void poziceKurzoru(int OsaX, int OsaY)
 {
     printf("\033[%i;%iH", OsaY, OsaX);
     return;
+}
+
+void spanek(int sekundy)
+{
+#ifdef Win32
+#include <windows.h>>
+    Sleep(sekundy ·1000);
+#endif
+#ifdef __linux__
+#include <unistd.h>
+    sleep(sekundy);
+#endif
 }

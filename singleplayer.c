@@ -7,14 +7,17 @@
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "ovladani.h"
+//#ifdef Win32
+#include <windows.h>
+//#endif
 
 short **MainHerniPlochaSP;
 void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu);
 void singleplayerStart(void);
 
-
-int getRandomInt(int min, int max) {
-    return rand() % (max - min + 1) + min;  // https://www.geeksforgeeks.org/c-rand-function/  vypada to celkem fajn
+int getRandomInt(int min, int max)
+{
+    return rand() % (max - min + 1) + min; // https://www.geeksforgeeks.org/c-rand-function/  vypada to celkem fajn
 }
 
 void InicializaceHernihoPoleSP()
@@ -42,12 +45,13 @@ void likvidaceHernihoPoleSP()
     free(MainHerniPlochaSP);
 }
 
-botuvTah(unsigned int* aktualniTah)
+botuvTah(unsigned int *aktualniTah)
 {
+    int poleKurzoruBota[2];
     switch (getObtiznostBota())
     {
     case 1:
-        int poleKurzoruBota[2];
+
         while (1)
         {
             poleKurzoruBota[0] = getRandomInt(0, getSirkaHerniPlochy() - 1);
@@ -58,9 +62,9 @@ botuvTah(unsigned int* aktualniTah)
                 break;
             }
         }
-        
+
         break;
-    
+
     default:
         break;
     }
@@ -69,7 +73,7 @@ botuvTah(unsigned int* aktualniTah)
 int skoroKonecSingleplayeru(int vyherce)
 {
     likvidaceHernihoPoleSP();
-    sleep(2);
+    spanek(2);
     clearScreen();
     printf("Tuto hru vyhrál ");
     switch (vyherce)
@@ -81,6 +85,7 @@ int skoroKonecSingleplayeru(int vyherce)
         printf("%s", getBotName());
     }
     printf("\nChcete hrát znovu (klávesa H) nebo se vrátit do hlavní nabídky (klávesa Z)?\n");
+
     char rozhodnutiNaPokracovani;
     while (1)
     {
@@ -456,7 +461,7 @@ void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu)
             printf("%i %i", aa, bb);
             if (souradniceHracu[aa][bb] != 0)
             {
-                
+
                 if (aa == 0)
                     poziceKurzoru(2, bb);
                 else if (bb == 0)
@@ -479,6 +484,6 @@ void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu)
         }
     }
     poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 3);
-    printf("Piskvorky - singleplayer\n%s vs. %s", getUserName(), getBotName()); // vypise kdo vlastne hraje
+    printf("Piskvorky - singleplayer\n%s vs. %s", getUserName(), getBotName());    // vypise kdo vlastne hraje
     poziceKurzoru(poziceKurzoruSouradnice[0] * 2, poziceKurzoruSouradnice[1] * 2); // nastavi kruzor tak aby ukazoval aktualne zvolene policko
 }
