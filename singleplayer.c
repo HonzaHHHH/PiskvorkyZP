@@ -38,7 +38,7 @@ void InicializaceHernihoPoleSP()
 
 void likvidaceHernihoPoleSP()
 {
-    for (int fff = 0; fff <= getSirkaHerniPlochy(); fff++)
+    for (int fff = 0; fff < getSirkaHerniPlochy(); fff++)
     {
         free(MainHerniPlochaSP[fff]);
     }
