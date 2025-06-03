@@ -7,9 +7,6 @@
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "ovladani.h"
-//#ifdef Win32
-#include <windows.h>
-//#endif
 
 short **MainHerniPlochaSP;
 void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu);
