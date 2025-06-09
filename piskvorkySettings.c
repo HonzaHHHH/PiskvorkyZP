@@ -285,7 +285,7 @@ void settingsInterface(void)
                 printf("Použití:\ntisk\nBez argumentů - vypíše všechny možnosti nastavení\n");
             }
             else
-                printf("Jméno uživatele: %s\nJméno bota: %s\nJméno protihráče: %s\nŠířka a výška herního pole: %i x %i\nMinimum znaků, které musí být za sebou, aby nějaký hráč vyhrál: %i\n", jmenoUzivatele, jmenoBota, jmenoProtihrace, sirkaHerniPlochy, vyskaHerniPlochy, minimumZnakuZaSebou);
+                printf("Jméno uživatele: %s\nJméno bota: %s\nJméno protihráče: %s\nŠířka a výška herního pole: %i x %i\nMinimum znaků, které musí být za sebou, aby nějaký hráč vyhrál: %i\nObtížnost bota: %i\n", jmenoUzivatele, jmenoBota, jmenoProtihrace, sirkaHerniPlochy, vyskaHerniPlochy, minimumZnakuZaSebou, obtiznostBota);
         }
         else if (strcmp(prikaz, "mmzs") == 0)
         {
@@ -306,13 +306,13 @@ void settingsInterface(void)
         }
         else if (strcmp(prikaz, "boto") == 0)
         {
-            if (strcmp(argument, "hlp"))
+            if (strcmp(argument, "hlp") == 0)
             {
                 printf("Použití:\nboto set argumen\nnastaví obtížnost bota\n");
             }
             else if (strcmp(argument, "set") == 0)
             {
-                if (atoi(parametr) == 1 || atoi(parametr) == 2 || atoi(parametr) == 3)
+                if (atoi(parametr) == 1 || atoi(parametr) == 2)
                 {
                     obtiznostBota = atoi(parametr);
                 }

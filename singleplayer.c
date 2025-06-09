@@ -61,6 +61,26 @@ botuvTah(unsigned int *aktualniTah)
         }
 
         break;
+    case 2:
+        while (1)
+        {
+            switch (getRandomInt(0,3))
+            {
+            case 0:
+                if (aktualniTah[1] < getVyskaHerniPlochy())
+                {
+                    MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] + 1)] = 2;
+                    break;
+                }
+                
+                break;
+            
+            default:
+                break;
+            }
+        }
+        
+        break;
 
     default:
         break;
