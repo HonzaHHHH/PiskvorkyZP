@@ -7,6 +7,9 @@
 #include "terminalSettings.h"
 #include "piskvorkySettings.h"
 #include "ovladani.h"
+#ifdef Win32
+#include <windows.h>
+#endif
 
 short **MainHerniPlochaSP;
 void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu);
@@ -35,11 +38,13 @@ void InicializaceHernihoPoleSP()
 
 void likvidaceHernihoPoleSP()
 {
+    #ifdef __linux__
     for (int fff = 0; fff < getSirkaHerniPlochy(); fff++)
     {
         free(MainHerniPlochaSP[fff]);
     }
     free(MainHerniPlochaSP);
+    #endif
 }
 
 botuvTah(unsigned int *aktualniTah)
