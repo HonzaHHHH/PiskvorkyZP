@@ -158,8 +158,9 @@ botuvTah(unsigned int *aktualniTah)
             default:
                 break;
             }
+        break;
 
-        } while (inti && protiZacykleni < 300);
+        } while (inti == 1 && protiZacykleni < 300);
         while (1)
         {
             poleKurzoruBota[0] = getRandomInt(1, getSirkaHerniPlochy() - 1);
@@ -223,7 +224,7 @@ botuvTah(unsigned int *aktualniTah)
             }
 
         } while (inti == 1 || protiZacykleni > 300);
-        if (inti == 0)
+        if (inti == 1)
         {
             while (1)
             {
@@ -629,8 +630,8 @@ void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu)
         for (int bb = 0; bb <= getVyskaHerniPlochy(); bb++)
         {
             fflush(stdout);
-            poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
-            printf("%i %i", aa, bb);
+            /*poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
+            printf("%i %i", aa, bb);*/ // ladici vypis
             if (souradniceHracu[aa][bb] != 0)
             {
 
