@@ -68,7 +68,7 @@ void poziceKurzoru(int OsaX, int OsaY)
 void spanek(int sekundy)
 {
 #ifdef Win32
-#include <windows.h>>
+#include <windows.h>
     Sleep(sekundy ·1000);
 #endif
 #ifdef __linux__
