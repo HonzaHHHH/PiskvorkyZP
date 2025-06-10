@@ -16,16 +16,15 @@ int obtiznostBota;
 void getUserFolderForConfigFiles(char *soubor, char *cilovyString)
 {
     char cesta[100];
-    
+
 #ifdef __linux__
-    #include<sys/stat.h>
-    
+#include <sys/stat.h>
+
     sprintf(cesta, "%s/.config/piskvorky/%s", getenv("HOME"), soubor);
     sprintf(cilovyString, "%s", cesta);
     return;
 #endif
     sprintf(cilovyString, "%s", cesta);
-
 }
 
 int getMinimalCharsInRow(void)
@@ -103,7 +102,6 @@ int loadSettings()
         vyskaHerniPlochy = 10;
         minimumZnakuZaSebou = 5;
         obtiznostBota = 1;
-
     }
     return 0;
 }
@@ -174,6 +172,8 @@ void settingsInterface(void)
         memset(parametr, 0, sizeof(parametr));
         printf("@& -->");
         fgets(radekPrikazu, sizeof(radekPrikazu), stdin);
+#ifdef __linux__
+        
         for (int i = 0; i < 4; i++)
         {
             prikaz[i] = radekPrikazu[i];
@@ -189,6 +189,11 @@ void settingsInterface(void)
             if (parametr[x - 9] != '\n')
                 parametr[x - 9] = radekPrikazu[x];
         }
+
+#else
+        radekPrikazu[strcspn(radekPrikazu, "\r\n")] = 0;
+        sscanf(radekPrikazu, "%4s %3s %49[^\n]", prikaz, argument, parametr);
+#endif
         if (strcmp(prikaz, "exit") == 0)
         {
             break;
@@ -312,7 +317,7 @@ void settingsInterface(void)
             }
             else if (strcmp(argument, "set") == 0)
             {
-                if (atoi(parametr) == 1 || atoi(parametr) == 2 || atoi(parametr) == 3 || atoi (parametr) == 4)
+                if (atoi(parametr) == 1 || atoi(parametr) == 2 || atoi(parametr) == 3 || atoi(parametr) == 4)
                 {
                     obtiznostBota = atoi(parametr);
                 }
