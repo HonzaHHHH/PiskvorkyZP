@@ -222,15 +222,18 @@ botuvTah(unsigned int *aktualniTah)
                 break;
             }
 
-        } while (inti && protiZacykleni < 300);
-        while (1)
+        } while (inti == 1 || protiZacykleni > 300);
+        if (inti == 0)
         {
-            poleKurzoruBota[0] = getRandomInt(1, getSirkaHerniPlochy() - 1);
-            poleKurzoruBota[1] = getRandomInt(1, getVyskaHerniPlochy() - 1);
-            if (MainHerniPlochaSP[poleKurzoruBota[0]][poleKurzoruBota[1]] == 0)
+            while (1)
             {
-                MainHerniPlochaSP[poleKurzoruBota[0]][poleKurzoruBota[1]] = 2;
-                break;
+                poleKurzoruBota[0] = getRandomInt(1, getSirkaHerniPlochy() - 1);
+                poleKurzoruBota[1] = getRandomInt(1, getVyskaHerniPlochy() - 1);
+                if (MainHerniPlochaSP[poleKurzoruBota[0]][poleKurzoruBota[1]] == 0)
+                {
+                    MainHerniPlochaSP[poleKurzoruBota[0]][poleKurzoruBota[1]] = 2;
+                    break;
+                }
             }
         }
         break;
