@@ -153,13 +153,10 @@ botuvTah(unsigned int *aktualniTah)
                     }
                 }
                 break;
-                break;
-
             default:
                 break;
             }
-        break;
-
+            protiZacykleni++;
         } while (inti == 1 && protiZacykleni < 300);
         while (1)
         {
@@ -171,7 +168,114 @@ botuvTah(unsigned int *aktualniTah)
                 break;
             }
         }
+        break;
     case 2:
+        inti = 1;
+        do
+        {
+            switch (getRandomInt(0, 7))
+            {
+            case 0:
+                if (aktualniTah[1] < getVyskaHerniPlochy())
+                {
+                    if (MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] + 1)] == 0)
+                    {
+                        MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] + 1)] = 2;
+                        inti = 0;
+                    }
+                }
+                break;
+            case 4:
+                if (aktualniTah[1] < getVyskaHerniPlochy() && aktualniTah[0] + 1 < getSirkaHerniPlochy())
+                {
+                    if (MainHerniPlochaSP[aktualniTah[0] + 1][(aktualniTah[1] + 1)] == 0)
+                    {
+                        MainHerniPlochaSP[aktualniTah[0] + 1][(aktualniTah[1] + 1)] = 2;
+                        inti = 0;
+                    }
+                }
+                break;
+            case 1:
+                if (aktualniTah[0] + 1 < getSirkaHerniPlochy())
+                {
+                    if (MainHerniPlochaSP[(aktualniTah[0] + 1)][(aktualniTah[1])] == 0)
+                    {
+                        MainHerniPlochaSP[(aktualniTah[0] + 1)][(aktualniTah[1])] = 2;
+                        inti = 0;
+                    }
+                }
+                break;
+            case 5:
+                if (aktualniTah[0] + 1 < getSirkaHerniPlochy() && aktualniTah[1] > 1)
+                {
+                    if (MainHerniPlochaSP[(aktualniTah[0] + 1)][(aktualniTah[1] - 1)] == 0)
+                    {
+                        MainHerniPlochaSP[(aktualniTah[0] + 1)][(aktualniTah[1] - 1)] = 2;
+                        inti = 0;
+                    }
+                }
+                break;
+            case 2:
+                if (aktualniTah[1] > 1)
+                {
+                    if (MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] - 1)] == 0)
+                    {
+                        MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] - 1)] = 2;
+                        inti = 0;
+                    }
+                }
+                break;
+            case 6:
+                if (aktualniTah[1] > 1 && aktualniTah[0] > 1)
+                {
+                    if (MainHerniPlochaSP[aktualniTah[0] - 1][(aktualniTah[1] - 1)] == 0)
+                    {
+                        MainHerniPlochaSP[aktualniTah[0] - 1][(aktualniTah[1] - 1)] = 2;
+                        inti = 0;
+                    }
+                }
+                break;
+            case 3:
+                if (aktualniTah[0] > 1)
+                {
+                    if (MainHerniPlochaSP[(aktualniTah[0] - 1)][(aktualniTah[1])] == 0)
+                    {
+                        MainHerniPlochaSP[(aktualniTah[0] - 1)][(aktualniTah[1])] = 2;
+                        inti = 0;
+                    }
+                }
+                break;
+            case 7:
+                if (aktualniTah[0] > 1 && aktualniTah[1] < getVyskaHerniPlochy())
+                {
+                    if (MainHerniPlochaSP[(aktualniTah[0] - 1)][(aktualniTah[1] + 1)] == 0)
+                    {
+                        MainHerniPlochaSP[(aktualniTah[0] - 1)][(aktualniTah[1])] = 2;
+                        inti = 0;
+                    }
+                }
+                // break;
+
+            default:
+                break;
+            }
+            protiZacykleni++;
+        } while (inti == 1 || protiZacykleni > 300);
+        if (inti == 1)
+        {
+            while (1)
+            {
+                poleKurzoruBota[0] = getRandomInt(1, getSirkaHerniPlochy() - 1);
+                poleKurzoruBota[1] = getRandomInt(1, getVyskaHerniPlochy() - 1);
+                if (MainHerniPlochaSP[poleKurzoruBota[0]][poleKurzoruBota[1]] == 0)
+                {
+                    MainHerniPlochaSP[poleKurzoruBota[0]][poleKurzoruBota[1]] = 2;
+                    break;
+                }
+            }
+        }
+        break;
+    case 7:
         inti = 1;
         do
         {
@@ -240,6 +344,7 @@ botuvTah(unsigned int *aktualniTah)
         break;
     }
 }
+
 
 int skoroKonecSingleplayeru(int vyherce)
 {
@@ -631,7 +736,8 @@ void nakreslitHerniPoleSP(int *poziceKurzoruSouradnice, short **souradniceHracu)
         {
             fflush(stdout);
             /*poziceKurzoru(1, getVyskaHerniPlochy() * 2 + 5);
-            printf("%i %i", aa, bb);*/ // ladici vypis
+            printf("%i %i", aa, bb);*/
+            // ladici vypis
             if (souradniceHracu[aa][bb] != 0)
             {
 
