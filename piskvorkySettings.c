@@ -308,11 +308,11 @@ void settingsInterface(void)
         {
             if (strcmp(argument, "hlp") == 0)
             {
-                printf("Použití:\nboto set argumen\nnastaví obtížnost bota\n");
+                printf("Použití:\nboto set argumen\nnastaví obtížnost bota\n1 - je to úplný hlupák (já bych to řekl hůře)\n2 - celkem normální\n3 - budete mu asi hodně (hodně(hodně)) nadávat\n4 - :-D\n");
             }
             else if (strcmp(argument, "set") == 0)
             {
-                if (atoi(parametr) == 1 || atoi(parametr) == 2 || atoi(parametr) == 3)
+                if (atoi(parametr) == 1 || atoi(parametr) == 2 || atoi(parametr) == 3 || atoi (parametr) == 4)
                 {
                     obtiznostBota = atoi(parametr);
                 }
