@@ -115,29 +115,41 @@ botuvTah(unsigned int *aktualniTah)
             case 0:
                 if (aktualniTah[1] < getVyskaHerniPlochy())
                 {
-                    MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] + 1)] = 2;
-                    inti = 0;
+                    if (MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] + 1)] == 2)
+                    {
+                        MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] + 1)] = 2;
+                        inti = 0;
+                    }
                 }
                 break;
             case 1:
                 if (aktualniTah[0] + 1 < getSirkaHerniPlochy())
                 {
-                    MainHerniPlochaSP[(aktualniTah[0] + 1)][(aktualniTah[1])] = 2;
-                    inti = 0;
+                    if (MainHerniPlochaSP[(aktualniTah[0] + 1)][(aktualniTah[1])] == 2)
+                    {
+                        MainHerniPlochaSP[(aktualniTah[0] + 1)][(aktualniTah[1])] = 2;
+                        inti = 0;
+                    }
                 }
                 break;
             case 2:
                 if (aktualniTah[1] > 1)
                 {
-                    MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] - 1)] = 2;
-                    inti = 0;
+                    if (MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] - 1)] == 2)
+                    {
+                        MainHerniPlochaSP[aktualniTah[0]][(aktualniTah[1] - 1)] = 2;
+                        inti = 0;
+                    }
                 }
                 break;
             case 3:
                 if (aktualniTah[0] > 1)
                 {
-                    MainHerniPlochaSP[(aktualniTah[0] - 1)][(aktualniTah[1])] = 2;
-                    inti = 0;
+                    if (MainHerniPlochaSP[(aktualniTah[0] - 1)][(aktualniTah[1])] == 2)
+                    {
+                        MainHerniPlochaSP[(aktualniTah[0] - 1)][(aktualniTah[1])] = 2;
+                        inti = 0;
+                    }
                 }
                 break;
                 break;
