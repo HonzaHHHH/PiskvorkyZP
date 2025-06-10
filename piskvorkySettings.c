@@ -317,7 +317,7 @@ void settingsInterface(void)
             }
             else if (strcmp(argument, "set") == 0)
             {
-                if (atoi(parametr) == 1 || atoi(parametr) == 2 || atoi(parametr) == 3 || atoi(parametr) == 4)
+                if (atoi(parametr) == 1 || atoi(parametr) == 2 || atoi(parametr) == 3 || atoi(parametr) == 4 || atoi(parametr) == 5)
                 {
                     obtiznostBota = atoi(parametr);
                 }

@@ -169,7 +169,7 @@ botuvTah(unsigned int *aktualniTah)
             }
         }
         break;
-    case 2:
+    case 5:
         inti = 1;
         do
         {
@@ -275,7 +275,7 @@ botuvTah(unsigned int *aktualniTah)
             }
         }
         break;
-    case 7:
+    case 2:
         inti = 1;
         do
         {
